@@ -1,0 +1,227 @@
+
+ /*----------------------INDEX.HTML----------------------*/      
+       /* Custom Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+        }
+        
+        /* Photo Card Styling */
+        .profile-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            border: none;
+            overflow: hidden;
+        }
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+        .profile-img {
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+        }
+        
+        /* Custom Card Styling */
+        .custom-card {
+            border-radius: 12px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .custom-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Special Title Style */
+        .special-title {
+            position: relative;
+            display: inline-block;
+        }
+        .special-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: #3498db;
+            bottom: -8px;
+            left: 0;
+            border-radius: 3px;
+        }
+        
+        /* Hobby Icons */
+        .hobby-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+/*---------------CV.HTML-----------*/
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+        
+        .skill-bar {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--primary-color), #4aa1e0);
+            transition: width 1s ease-in-out;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+        }
+
+ 
+/*-----------ILETISIM.HTML--------------------*/
+        /* Special Contact Form Styling */
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+        }
+        
+        /* Floating Labels Effect */
+        .form-floating label {
+            transition: all 0.3s ease;
+        }
+        
+        /* Button Animations */
+        .btn-validate {
+            background-color: #f39c12;
+            border-color: #f39c12;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-validate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+        }
+        
+        .btn-submit {
+            background-color: #2ecc71;
+            border-color: #2ecc71;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        
+        /* Error/Success Messages */
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .show-error {
+            opacity: 1;
+        }
+        
+        .is-invalid {
+            border-color: #e74c3c !important;
+        }
+        
+        .is-valid {
+            border-color: #2ecc71 !important;
+        }
+        
+        /* Floating Animation for Form */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating-form {
+            animation: float 6s ease-in-out infinite;
+        }
+   

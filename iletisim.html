@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Shaheer Ahmed - İletişim</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vue.js (for framework validation) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+<body>
+    <!-- Vue.js App Container -->
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-user-circle me-2"></i>Syed Shaheer Ahmed
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Hakkında</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cv.html"><i class="fas fa-file-alt me-1"></i> Özgeçmiş</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sehir.html"><i class="fas fa-city me-1"></i> Şehrim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="iletisim.html"><i class="fas fa-envelope me-1"></i> İletişim</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form-container floating-form">
+                        <!-- Form Header -->
+                        <div class="form-header text-center">
+                            <h2><i class="fas fa-paper-plane me-2"></i>İletişim Formu</h2>
+                            <p>Bana ulaşmak için formu doldurun</p>
+                        </div>
+                        
+                        <!-- Contact Form -->
+                        <form id="contactForm" @submit.prevent="handleSubmit" class="p-4">
+                            <!-- Name Field -->
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="name" 
+                                        placeholder="Adınız"
+                                        v-model="formData.name"
+                                        :class="{ 'is-invalid': errors.name, 'is-valid': validated && !errors.name }"
+                                        @blur="validateField('name')"
+                                    >
+                                    <label for="name">Adınız Soyadınız</label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.name }">
+                                    {{ errors.name }}
+                                </div>
+                            </div>
+                            
+                            <!-- Email Field -->
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        id="email" 
+                                        placeholder="E-posta"
+                                        v-model="formData.email"
+                                        :class="{ 'is-invalid': errors.email, 'is-valid': validated && !errors.email }"
+                                        @blur="validateField('email')"
+                                    >
+                                    <label for="email">E-posta Adresiniz</label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.email }">
+                                    {{ errors.email }}
+                                </div>
+                            </div>
+                            
+                            <!-- Phone Field -->
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input 
+                                        type="tel" 
+                                        class="form-control" 
+                                        id="phone" 
+                                        placeholder="Telefon"
+                                        v-model="formData.phone"
+                                        :class="{ 'is-invalid': errors.phone, 'is-valid': validated && !errors.phone }"
+                                        @blur="validateField('phone')"
+                                    >
+                                    <label for="phone">Telefon Numaranız</label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.phone }">
+                                    {{ errors.phone }}
+                                </div>
+                            </div>
+                            
+                            <!-- Dropdown (Subject) -->
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <select 
+                                        class="form-select" 
+                                        id="subject"
+                                        v-model="formData.subject"
+                                        :class="{ 'is-invalid': errors.subject, 'is-valid': validated && !errors.subject }"
+                                        @blur="validateField('subject')"
+                                    >
+                                        <option value="" disabled selected>Konu seçiniz</option>
+                                        <option value="question">Sorular</option>
+                                        <option value="feedback">Geri Bildirim</option>
+                                        <option value="collaboration">İş Birliği</option>
+                                        <option value="other">Diğer</option>
+                                    </select>
+                                    <label for="subject">Konu</label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.subject }">
+                                    {{ errors.subject }}
+                                </div>
+                            </div>
+                            
+                            <!-- Checkbox (Contact Method) -->
+                            <div class="mb-4">
+                                <label class="form-label">Tercih Ettiğiniz İletişim Yöntemi:</label>
+                                <div class="form-check">
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="contactEmail"
+                                        v-model="formData.contactMethods.email"
+                                    >
+                                    <label class="form-check-label" for="contactEmail">E-posta</label>
+                                </div>
+                                <div class="form-check">
+                                    <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="contactPhone"
+                                        v-model="formData.contactMethods.phone"
+                                    >
+                                    <label class="form-check-label" for="contactPhone">Telefon</label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.contactMethods }">
+                                    {{ errors.contactMethods }}
+                                </div>
+                            </div>
+                            
+                            <!-- Textarea (Message) -->
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <textarea 
+                                        class="form-control" 
+                                        id="message" 
+                                        placeholder="Mesajınız"
+                                        style="height: 150px"
+                                        v-model="formData.message"
+                                        :class="{ 'is-invalid': errors.message, 'is-valid': validated && !errors.message }"
+                                        @blur="validateField('message')"
+                                    ></textarea>
+                                    <label for="message">Mesajınız</label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.message }">
+                                    {{ errors.message }}
+                                </div>
+                            </div>
+                            
+                            <!-- Form Buttons -->
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <!-- Clear Button -->
+                                <button type="reset" class="btn btn-outline-secondary mb-2">
+                                    <i class="fas fa-eraser me-1"></i>Temizle
+                                </button>
+                                
+                                <!-- Validate Button (Plain JS) -->
+                                <button 
+                                    type="button" 
+                                    class="btn btn-validate mb-2"
+                                    @click="validateWithJS"
+                                >
+                                    <i class="fas fa-check-circle me-1"></i>JavaScript ile Doğrula
+                                </button>
+                                
+                                <!-- Submit Button (Vue.js) -->
+                                <button 
+                                    type="submit" 
+                                    class="btn btn-submit mb-2"
+                                    :disabled="isSubmitting"
+                                >
+                                    <span v-if="!isSubmitting">
+                                        <i class="fas fa-paper-plane me-1"></i>Gönder 
+                                    </span>
+                                    <span v-else>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Gönderiliyor...
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white text-center py-4 mt-5">
+            <div class="container">
+                <p>&copy; 2023 Syed Shaheer Ahmed - Tüm Hakları Saklıdır</p>
+                <p>Sakarya Üniversitesi - Bilgisayar Mühendisliği</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Plain JavaScript Validation
+        function validateWithJS() {
+            const form = document.getElementById('contactForm');
+            let isValid = true;
+            
+            // Name validation
+            const name = form.elements['name'].value.trim();
+            if (!name) {
+                alert('Lütfen adınızı giriniz!');
+                isValid = false;
+            }
+            
+            // Email validation
+            const email = form.elements['email'].value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Lütfen geçerli bir e-posta adresi giriniz!');
+                isValid = false;
+            }
+            
+            // Phone validation
+            const phone = form.elements['phone'].value.trim();
+            const phoneRegex = /^[0-9]{10,15}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('Lütfen geçerli bir telefon numarası giriniz (10-15 rakam)!');
+                isValid = false;
+            }
+            
+            // Subject validation
+            const subject = form.elements['subject'].value;
+            if (!subject) {
+                alert('Lütfen bir konu seçiniz!');
+                isValid = false;
+            }
+            
+            // Message validation
+            const message = form.elements['message'].value.trim();
+            if (message.length < 10) {
+                alert('Mesajınız en az 10 karakter olmalıdır!');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                alert('JavaScript doğrulaması başarılı! Form gönderilebilir.');
+            }
+            
+            return isValid;
+        }
+        
+        // Vue.js Application
+        const { createApp } = Vue;
+        
+        createApp({
+            data() {
+                return {
+                    formData: {
+                        name: '',
+                        email: '',
+                        phone: '',
+                        subject: '',
+                        contactMethods: {
+                            email: false,
+                            phone: false
+                        },
+                        message: ''
+                    },
+                    errors: {
+                        name: '',
+                        email: '',
+                        phone: '',
+                        subject: '',
+                        contactMethods: '',
+                        message: ''
+                    },
+                    validated: false,
+                    isSubmitting: false
+                };
+            },
+            methods: {
+                validateField(field) {
+                    this.validated = true;
+                    
+                    switch(field) {
+                        case 'name':
+                            this.errors.name = this.formData.name.trim() ? '' : 'Bu alan zorunludur';
+                            break;
+                        case 'email':
+                            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            this.errors.email = emailRegex.test(this.formData.email) ? '' : 'Geçersiz e-posta formatı';
+                            break;
+                        case 'phone':
+                            const phoneRegex = /^[0-9]{10,15}$/;
+                            this.errors.phone = phoneRegex.test(this.formData.phone) ? '' : '10-15 rakam giriniz';
+                            break;
+                        case 'subject':
+                            this.errors.subject = this.formData.subject ? '' : 'Lütfen bir konu seçiniz';
+                            break;
+                        case 'message':
+                            this.errors.message = this.formData.message.trim().length >= 10 ? '' : 'En az 10 karakter giriniz';
+                            break;
+                    }
+                },
+                validateForm() {
+                    this.validated = true;
+                    let isValid = true;
+                    
+                    // Validate all fields
+                    this.validateField('name');
+                    this.validateField('email');
+                    this.validateField('phone');
+                    this.validateField('subject');
+                    this.validateField('message');
+                    
+                    // Check contact methods
+                    if (!this.formData.contactMethods.email && !this.formData.contactMethods.phone) {
+                        this.errors.contactMethods = 'En az bir iletişim yöntemi seçiniz';
+                        isValid = false;
+                    } else {
+                        this.errors.contactMethods = '';
+                    }
+                    
+                    // Check if any errors exist
+                    for (const error in this.errors) {
+                        if (this.errors[error]) {
+                            isValid = false;
+                        }
+                    }
+                    
+                    return isValid;
+                },
+                handleSubmit() {
+                    if (this.validateForm()) {
+                        this.isSubmitting = true;
+                        
+                        // Simulate API call
+                        setTimeout(() => {
+                            // In a real app, you would submit to a server here
+                            console.log('Form submitted:', this.formData);
+                            
+                            // Store form data for the success page
+                            localStorage.setItem('formData', JSON.stringify(this.formData));
+                            
+                            // Redirect to success page
+                            window.location.href = 'form-basarili.html';
+                            
+                            this.isSubmitting = false;
+                        }, 1500);
+                    } else {
+                        // Scroll to first error
+                        const firstError = document.querySelector('.is-invalid');
+                        if (firstError) {
+                            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
