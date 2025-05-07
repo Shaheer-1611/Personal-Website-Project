@@ -1,94 +1,146 @@
 
  /*----------------------INDEX.HTML----------------------*/      
-       /* Custom Gradient Background */
-        .gradient-bg {
-            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
-        }
-        
-        /* Photo Card Styling */
-        .profile-card {
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-            border: none;
-            overflow: hidden;
-        }
-        .profile-card:hover {
-            transform: translateY(-5px);
-        }
-        .profile-img {
-            height: 300px;
-            object-fit: cover;
-            object-position: top;
-        }
-        
-        /* Custom Card Styling */
-        .custom-card {
-            border-radius: 12px;
-            border-left: 5px solid #3498db;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-        .custom-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            transform: translateY(-3px);
-        }
-        
-        /* Special Title Style */
-        .special-title {
-            position: relative;
-            display: inline-block;
-        }
-        .special-title::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: #3498db;
-            bottom: -8px;
-            left: 0;
-            border-radius: 3px;
-        }
-        
-        /* Hobby Icons */
-        .hobby-icon {
-            font-size: 1.5rem;
-            margin-right: 10px;
-            color: #3498db;
+
+ /* Custom Gradient Background */
+  .gradient-bg {
+     background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+ }
+ 
+ /* Photo Card Styling */
+ .profile-card {
+     border-radius: 15px;
+     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+     transition: transform 0.3s;
+     border: none;
+     overflow: hidden;
+ }
+ .profile-card:hover {
+     transform: translateY(-5px);
+ }
+ .profile-img {
+     height: 300px;
+     object-fit: cover;
+     object-position: top;
+ }
+ 
+ /* Custom Card Styling */
+ .custom-card {
+     border-radius: 12px;
+     border-left: 5px solid #3498db;
+     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+     transition: all 0.3s;
+ }
+ .custom-card:hover {
+     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+     transform: translateY(-3px);
+ }
+ 
+ /* Special Title Style */
+ .special-title {
+     position: relative;
+     display: inline-block;
+ }
+ .special-title::after {
+     content: '';
+     position: absolute;
+     width: 50%;
+     height: 3px;
+     background: #3498db;
+     bottom: -8px;
+     left: 0;
+     border-radius: 3px;
+ }
+ 
+ /* Hobby Icons */
+ .hobby-icon {
+     font-size: 1.5rem;
+     margin-right: 10px;
+     color: #3498db;
+ }
+
+ /*----------------------MIRASIMIZ.HTML----------------*/   
+        /* Custom Color Scheme */
+        :root {
+            --islamabad-green: #2e8b57;
+            --cultural-gold: #d4af37;
+            --heritage-brown: #8B4513;
         }
 
-/*---------------CV.HTML-----------*/
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
+        /* Override Bootstrap Primary Color */
+        .bg-primary {
+            background-color: var(--islamabad-green) !important;
         }
-        
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        .btn-primary {
+            background-color: var(--cultural-gold);
+            border-color: var(--cultural-gold);
+            color: #000;
         }
-        
-        .timeline {
+
+        /* Heritage Header with Parallax */
+        .heritage-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('images/faisal-mosque-night.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Heritage Card Styling */
+        .heritage-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--cultural-gold);
+        }
+
+        .heritage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .heritage-card img {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .heritage-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Timeline Styling */
+        .heritage-timeline {
             position: relative;
             padding-left: 50px;
+            margin-top: 3rem;
         }
-        
-        .timeline::before {
+
+        .heritage-timeline::before {
             content: '';
             position: absolute;
             left: 15px;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: var(--primary-color);
+            width: 3px;
+            background: var(--cultural-gold);
         }
-        
+
         .timeline-item {
             position: relative;
             margin-bottom: 30px;
-            animation: fadeInUp 0.5s ease-out;
         }
-        
+
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -97,51 +149,131 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: var(--primary-color);
+            background: var(--cultural-gold);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px var(--primary-color);
-        }
-        
-        .skill-bar {
-            height: 10px;
-            border-radius: 5px;
-            background-color: #e9ecef;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-        
-        .skill-progress {
-            height: 100%;
-            border-radius: 5px;
-            background: linear-gradient(90deg, var(--primary-color), #4aa1e0);
-            transition: width 1s ease-in-out;
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: var(--primary-color);
-            bottom: -10px;
-            left: 0;
+            box-shadow: 0 0 0 3px var(--cultural-gold);
         }
 
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .heritage-header {
+                height: 40vh;
+                background-attachment: scroll;
+            }
+            
+            .heritage-timeline {
+                padding-left: 30px;
+            }
+            
+            .timeline-item::before {
+                left: -28px;
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+/*--------------------ILIGI-ALANLARIM.HTML------------------*/
+        /* Custom Color Scheme */
+        :root {
+            --movie-red: #d22b2b;
+            --dark-bg: #1a1a1a;
+            --light-text: #f8f9fa;
+        }
+
+        /* Background and Typography */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Custom Navbar */
+        .navbar-custom {
+            background-color: var(--dark-bg);
+        }
+
+        /* Header with Gradient */
+        .interest-header {
+            background: linear-gradient(135deg, var(--movie-red), #6d0d0d);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Movie Cards */
+        .movie-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            background-color: white;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .movie-card img {
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .movie-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .movie-card .card-body {
+            position: relative;
+        }
+
+        /* Rating Badge */
+        .rating-badge {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            background-color: var(--movie-red);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: none;
+            margin: 2rem auto;
+        }
+
+        /* API Controls */
+        .api-controls {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .movie-card img {
+                height: 300px;
+            }
+            
+            .interest-header {
+                padding: 3rem 0;
+            }
+        }
+        
  
 /*-----------ILETISIM.HTML--------------------*/
         /* Special Contact Form Styling */
@@ -224,4 +356,118 @@
         .floating-form {
             animation: float 6s ease-in-out infinite;
         }
-   
+
+/* ---------------------------LOGIN.HTML--------------------------------- */
+        .login-page {
+            --login-primary: #3498db;
+            --login-secondary: #2c3e50;
+            --success-green: #2ecc71;
+            --error-red: #e74c3c;
+            
+            background: linear-gradient(135deg, var(--login-primary), var(--login-secondary));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .login-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .login-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, var(--login-secondary), var(--login-primary));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .login-body {
+            padding: 2rem;
+        }
+        
+        .login-input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .login-input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .login-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .login-input:focus {
+            border-color: var(--login-primary);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+            outline: none;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--login-primary), var(--login-secondary));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.85rem;
+            height: 20px;
+            margin-top: 0.25rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .show-error {
+            opacity: 1;
+        }
+        
+        .input-error {
+            border-color: var(--error-red) !important;
+        }
+        
+        /* Floating animation only for this page */
+        .login-floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    

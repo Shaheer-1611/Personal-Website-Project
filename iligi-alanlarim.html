@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlgi Alanlarım | Syed Shaheer Ahmed</title>
+    <!-- Bootstrap CSS (Customized) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-film me-2"></i>İlgi Alanlarım
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sehir.html"><i class="fas fa-city me-1"></i> Şehrim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="ilgi-alanlarim.html"><i class="fas fa-heart me-1"></i> İlgi Alanlarım</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="iletisim.html"><i class="fas fa-envelope me-1"></i> İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="interest-header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Film Tutkum</h1>
+            <p class="lead">The Movie Database (TMDB) API'si ile güncel film önerileri</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- API Controls -->
+        <section class="api-controls animate__animated animate__fadeIn">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h4><i class="fas fa-filter me-2"></i>Filmleri Filtrele</h4>
+                    <div class="input-group">
+                        <select class="form-select" id="genreSelect">
+                            <option value="28">Aksiyon</option>
+                            <option value="12">Macera</option>
+                            <option value="16">Animasyon</option>
+                            <option value="35">Komedi</option>
+                            <option value="18">Drama</option>
+                            <option value="10751">Aile</option>
+                            <option value="14">Fantastik</option>
+                            <option value="878">Bilim Kurgu</option>
+                        </select>
+                        <button class="btn btn-danger" type="button" id="fetchMovies">
+                            <i class="fas fa-play me-1"></i>Getir
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Veriler The Movie Database API'sinden gerçek zamanlı olarak çekilmektedir.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Spinner -->
+        <div class="text-center">
+            <div class="spinner-border loading-spinner text-danger" role="status">
+                <span class="visually-hidden">Yükleniyor...</span>
+            </div>
+        </div>
+
+        <!-- Movies Container -->
+        <div class="row" id="moviesContainer">
+            <!-- Movies will be inserted here by JavaScript -->
+        </div>
+
+        <!-- API Information -->
+        <section class="mt-5">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h4><i class="fas fa-code me-2"></i>API Entegrasyonu Hakkında</h4>
+                    <p>
+                        Bu sayfa, The Movie Database (TMDB) API'sini kullanarak popüler film verilerini göstermektedir.
+                        JavaScript Fetch API kullanılarak veriler çekilmekte ve dinamik olarak sayfaya render edilmektedir.
+                    </p>
+                    <a href="https://www.themoviedb.org/documentation/api" target="_blank" class="btn btn-outline-danger">
+                        <i class="fas fa-external-link-alt me-1"></i>TMDB API Dokümantasyonu
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2023 Syed Shaheer Ahmed - Tüm Hakları Saklıdır</p>
+            <p>Sakarya Üniversitesi - Bilgisayar Mühendisliği</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript for API Integration -->
+    <script>
+        // API Configuration
+        const API_KEY = 'YOUR_TMDB_API_KEY'; // Replace with your actual API key
+        const BASE_URL = 'https://api.themoviedb.org/3';
+        const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+
+        // DOM Elements
+        const moviesContainer = document.getElementById('moviesContainer');
+        const fetchButton = document.getElementById('fetchMovies');
+        const genreSelect = document.getElementById('genreSelect');
+        const loadingSpinner = document.querySelector('.loading-spinner');
+
+        // Fetch Movies Function
+        async function fetchMovies(genreId) {
+            try {
+                // Show loading spinner
+                loadingSpinner.style.display = 'block';
+                moviesContainer.innerHTML = '';
+
+                const response = await fetch(
+                    `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=tr-TR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}`
+                );
+
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+
+                const data = await response.json();
+                displayMovies(data.results);
+            } catch (error) {
+                console.error('Error fetching movies:', error);
+                moviesContainer.innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Filmler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.
+                        </div>
+                    </div>
+                `;
+            } finally {
+                // Hide loading spinner
+                loadingSpinner.style.display = 'none';
+            }
+        }
+
+        // Display Movies Function
+        function displayMovies(movies) {
+            moviesContainer.innerHTML = '';
+
+            if (movies.length === 0) {
+                moviesContainer.innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-warning">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Seçtiğiniz kategoride film bulunamadı.
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            movies.slice(0, 8).forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.className = 'col-md-6 col-lg-3';
+                movieCard.innerHTML = `
+                    <div class="movie-card">
+                        <img src="${movie.poster_path ? IMAGE_BASE_URL + movie.poster_path : 'images/no-poster.jpg'}" 
+                             class="card-img-top" 
+                             alt="${movie.title}"
+                             onerror="this.src='images/no-poster.jpg'">
+                        <div class="card-body">
+                            <div class="rating-badge">
+                                ${movie.vote_average.toFixed(1)}
+                            </div>
+                            <h5 class="card-title">${movie.title}</h5>
+                            <p class="card-text text-muted">
+                                <small>
+                                    ${movie.release_date ? movie.release_date.split('-')[0] : 'Tarih yok'}
+                                    • ${movie.genre_ids.map(id => getGenreName(id)).join(', ')}
+                                </small>
+                            </p>
+                            <p class="card-text">
+                                ${movie.overview ? movie.overview.substring(0, 100) + '...' : 'Açıklama yok'}
+                            </p>
+                            <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank" class="btn btn-sm btn-outline-danger">
+                                Detaylar
+                            </a>
+                        </div>
+                    </div>
+                `;
+                moviesContainer.appendChild(movieCard);
+            });
+        }
+
+        // Genre ID to Name Mapping
+        function getGenreName(genreId) {
+            const genres = {
+                28: 'Aksiyon',
+                12: 'Macera',
+                16: 'Animasyon',
+                35: 'Komedi',
+                80: 'Suç',
+                99: 'Belgesel',
+                18: 'Drama',
+                10751: 'Aile',
+                14: 'Fantastik',
+                36: 'Tarih',
+                27: 'Korku',
+                10402: 'Müzik',
+                9648: 'Gizem',
+                10749: 'Romantik',
+                878: 'Bilim Kurgu',
+                10770: 'TV Film',
+                53: 'Gerilim',
+                10752: 'Savaş',
+                37: 'Batı'
+            };
+            return genres[genreId] || 'Diğer';
+        }
+
+        // Event Listeners
+        fetchButton.addEventListener('click', () => {
+            const genreId = genreSelect.value;
+            fetchMovies(genreId);
+        });
+
+        // Initialize with popular movies
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMovies(genreSelect.value);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap | Syed Shaheer Ahmed</title>
+    <!-- Bootstrap CSS (isolated scope) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card login-floating">
+            <!-- Login Header -->
+            <div class="login-header">
+                <h3><i class="fas fa-user-lock me-2"></i>Öğrenci Girişi</h3>
+                <p class="mb-0">Sakarya Üniversitesi Bilgisayar Mühendisliği</p>
+            </div>
+            
+            <!-- Login Body -->
+            <div class="login-body">
+                <form id="loginForm" action="php/login.php" method="POST">
+                    <!-- Username Field -->
+                    <div class="login-input-group">
+                        <label for="username"><i class="fas fa-envelope me-1"></i> Kullanıcı Adı</label>
+                        <input type="text" class="login-input" id="username" name="username" 
+                               placeholder="b1812100001@sakarya.edu.tr">
+                        <div class="error-message" id="usernameError"></div>
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div class="login-input-group">
+                        <label for="password"><i class="fas fa-key me-1"></i> Şifre</label>
+                        <input type="password" class="login-input" id="password" name="password" 
+                               placeholder="b1812100001">
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt me-1"></i> Giriş Yap
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript for Validation -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            // Reset previous errors
+            document.getElementById('usernameError').classList.remove('show-error');
+            document.getElementById('passwordError').classList.remove('show-error');
+            document.getElementById('username').classList.remove('input-error');
+            document.getElementById('password').classList.remove('input-error');
+            
+            // Get values
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            let isValid = true;
+            
+            // Validate username (email format)
+            const emailRegex = /^b\d{9}@sakarya\.edu\.tr$/i;
+            if (!username) {
+                showError('usernameError', 'Kullanıcı adı boş olamaz', 'username');
+                isValid = false;
+            } else if (!emailRegex.test(username)) {
+                showError('usernameError', 'Geçerli bir öğrenci emaili giriniz', 'username');
+                isValid = false;
+            }
+            
+            // Validate password
+            const passwordRegex = /^b\d{9}$/i;
+            if (!password) {
+                showError('passwordError', 'Şifre boş olamaz', 'password');
+                isValid = false;
+            } else if (!passwordRegex.test(password)) {
+                showError('passwordError', 'Geçerli bir öğrenci numarası giriniz', 'password');
+                isValid = false;
+            }
+            
+            // Check if username and password match pattern
+            if (isValid && username.toLowerCase() !== password.toLowerCase() + '@sakarya.edu.tr') {
+                showError('passwordError', 'Kullanıcı adı ve şifre uyuşmalıdır', 'password');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                e.preventDefault(); // Prevent form submission
+                
+                // Add shake animation to form
+                document.querySelector('.login-card').classList.add('animate__animated', 'animate__shakeX');
+                setTimeout(() => {
+                    document.querySelector('.login-card').classList.remove('animate__animated', 'animate__shakeX');
+                }, 1000);
+            }
+        });
+
+        function showError(elementId, message, inputId) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.add('show-error');
+            if (inputId) {
+                document.getElementById(inputId).classList.add('input-error');
+            }
+        }
+    </script>
+</body>
+</html>
