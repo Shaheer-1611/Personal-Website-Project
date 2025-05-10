@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>İlgi Alanlarım | Syed Shaheer Ahmed</title>
+    <!-- Favicon (Standard ICO format) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- Bootstrap CSS (Customized) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
  
 </head>
 <body>
     <!-- Navigation -->
-    <<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top animate__animated animate__fadeInDown">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <i class="fas fa-user me-2"></i>Syed Shaheer Ahmed
@@ -35,7 +39,7 @@
                         <a class="nav-link" href="mirasimiz.html"><i class="fas fa-landmark me-1"></i> Mirasımız</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="ilgi-alanlarim.html"><i class="fas fa-heart me-1"></i> İlgi Alanlarım</a>
+                        <a class="nav-link active" href="iligi-alanlarim.html"><i class="fas fa-heart me-1"></i> İligi Alanlarım</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="iletisim.html"><i class="fas fa-envelope me-1"></i> İletişim</a>
@@ -49,17 +53,22 @@
     </nav>
 
     <!-- Header -->
-    <header class="interest-header text-center">
+    <header class="interest-header text-center animate__animated animate__fadeInUp">
         <div class="container">
-           <br><br><br> <h1 class="display-4 fw-bold">Film Tutkum</h1>
+           <br><br><br><br> <h1 class="display-4 fw-bold">Film Tutkum</h1><br>
             <p class="lead">The Movie Database (TMDB) API'si ile güncel film önerileri</p>
+            <br><p style="font-size: 1.25rem; font-weight: 300; text-align: justify;">Filmlere, özellikle de gizem ve aksiyon türlerine karşı güçlü bir tutkum var. Beni tahmin etmeye devam ettiren, akıllıca kurgulanmış, gizli ipuçları 
+               ve beklenmedik dönüşler içeren hikayelere çekiliyorum; ister psikolojik gerilim filmi ister klasik bir polisiye roman olsun. Sherlock Holmes, Gone Girl 
+               ve Prisoners gibi gizem filmleri, gerilim dolu hikaye anlatımları ve karmaşık karakterleriyle beni büyülüyor. Aksiyon tarafında, yoğun koreografi, 
+               stratejik savaşlar ve akıllı kahramanlar içeren yüksek riskli, hızlı tempolu filmlerden hoşlanıyorum; John Wick, The Dark Knight ve Mission: Impossible 
+               serisi gibi filmler. Benim için filmler sadece eğlence değil; adrenalin, zeka ve duyguyu birleştiren sürükleyici bir hikaye anlatımı biçimidir.</p><br>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container">
         <!-- API Controls -->
-        <section class="api-controls animate__animated animate__fadeIn">
+        <section class="api-controls animate__animated animate__fadeInUp">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-3 mb-md-0">
                     <h4><i class="fas fa-filter me-2"></i>Filmleri Filtrele</h4>
@@ -101,7 +110,7 @@
         </div>
 
         <!-- API Information -->
-        <section class="mt-5">
+        <br><br><br><br><section class="mt-5">
             <div class="card bg-light">
                 <div class="card-body">
                     <h4><i class="fas fa-code me-2"></i>API Entegrasyonu Hakkında</h4>
@@ -118,13 +127,14 @@
     </main>
 
     <!-- Footer -->
-   <br><br> <footer class="text-center py-4" style="background-color: rgba(0,0,0,0.8); color: white;">
+   <br><br><br><br><br><br><br><br>
+    <footer class="text-center py-4" style="background-color: rgba(0,0,0,0.8); color: white;">
         <div class="container">
             <div class="mb-3">
-                <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-twitter fa-lg"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-github fa-lg"></i></a>
+                <a href="https://www.instagram.com/_lifeisposh._/?__pwa=1#" target="_blank" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="text-white mx-2"><i class="fas fa-envelope fa-lg"></i></a>
+                <a href="https://www.linkedin.com/in/shaheer-ahmed-7359b2290/overlay/about-this-profile/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BcgExK5fAQfOsoR01rQVUvw%3D%3D" target="_blank" class="text-white mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/account" target="_blank" class="text-white mx-2"><i class="fab fa-github fa-lg"></i></a>
             </div>
             <p>&copy; 2023 Syed Shaheer Ahmed - Tüm Hakları Saklıdır</p>
             <p>Sakarya Üniversitesi - Bilgisayar Mühendisliği</p>
