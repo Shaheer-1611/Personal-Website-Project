@@ -57,6 +57,191 @@
      margin-right: 10px;
      color: #3498db;
  }
+/*------------------------CV.HTML-------------------*/
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 50px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--primary-color);
+}
+
+.skill-bar {
+    height: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--primary-color), #4aa1e0);
+    transition: width 1s ease-in-out;
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: var(--primary-color);
+    bottom: -10px;
+    left: 0;
+}
+
+/*-----------------------SEHIR.HTML--------------------------*/
+:root {
+    --islamabad-green: #2e8b57;
+    --islamabad-white: #f8f9fa;
+    --islamabad-blue: #1e90ff;
+    --margalla-hills: #556b2f;
+}
+
+/* Override Bootstrap Primary Color */
+.bg-primary {
+    background-color: var(--islamabad-green) !important;
+}
+
+.text-primary {
+    color: var(--islamabad-green) !important;
+}
+
+/* City Header with Parallax Effect */
+.city-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('images/islamabad-banner.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Custom Carousel Styling */
+.city-carousel {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 3rem;
+}
+
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+}
+
+/* Custom Indicator Buttons */
+.carousel-indicators button {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50%;
+    margin: 0 8px !important;
+}
+
+/* Attraction Cards */
+.attraction-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.attraction-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.attraction-card img {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.attraction-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Facts Section */
+.fact-box {
+    background-color: var(--islamabad-white);
+    border-left: 5px solid var(--islamabad-green);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .city-header {
+        height: 40vh;
+        background-attachment: scroll;
+    }
+    
+    .carousel-item img {
+        height: 300px;
+    }
+}
+
 
  /*----------------------MIRASIMIZ.HTML----------------*/   
         /* Custom Color Scheme */
