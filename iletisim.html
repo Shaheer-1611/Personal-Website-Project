@@ -69,7 +69,7 @@
                         </div>
                         
                         <!-- Contact Form -->
-                        <form id="contactForm" @submit.prevent="handleSubmit" class="p-4">
+                        <form id="contactForm" action="form-basarli.html" method="get" @submit.prevent="handleSubmit" class="p-4">
                             <!-- Name Field -->
                             <div class="mb-4">
                                 <div class="form-floating">
@@ -392,9 +392,12 @@
                             
                             // Store form data for the success page
                             localStorage.setItem('formData', JSON.stringify(this.formData));
+
+                            //retrieves data
+                            const formData = JSON.parse(localStorage.getItem('formData'))
                             
                             // Redirect to success page
-                            window.location.href = 'form-basarili.html';
+                            window.location.href = 'form-basarli.html';
                             
                             this.isSubmitting = false;
                         }, 1500);
