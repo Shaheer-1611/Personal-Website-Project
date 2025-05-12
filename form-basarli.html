@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Başarılı - Syed Shaheer Ahmed</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .success-card {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: none;
+            overflow: hidden;
+        }
+        .success-header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 2rem;
+        }
+        .data-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+        .data-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (same as iletisim.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-user-circle me-2"></i>Syed Shaheer Ahmed
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cv.html"><i class="fas fa-file-alt me-1"></i> Özgeçmiş</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sehir.html"><i class="fas fa-city me-1"></i> Şehrim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="iletisim.html"><i class="fas fa-envelope me-1"></i> İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Content -->
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card success-card">
+                    <!-- Success Header -->
+                    <div class="success-header text-center">
+                        <h2><i class="fas fa-check-circle me-2"></i>Form Başarıyla Gönderildi!</h2>
+                        <p class="mb-0">Gönderdiğiniz bilgiler aşağıda listelenmiştir</p>
+                    </div>
+                    
+                    <!-- Data Display -->
+                    <div class="card-body p-4" id="formDataDisplay">
+                        <!-- Data will be inserted here by JavaScript -->
+                    </div>
+                    
+                    <!-- Return Button -->
+                    <div class="card-footer bg-white text-center">
+                        <a href="iletisim.html" class="btn btn-primary">
+                            <i class="fas fa-arrow-left me-1"></i> İletişim Sayfasına Dön
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (same as iletisim.html) -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2023 Syed Shaheer Ahmed - Tüm Hakları Saklıdır</p>
+            <p>Sakarya Üniversitesi - Bilgisayar Mühendisliği</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Data Display Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const displayContainer = document.getElementById('formDataDisplay');
+            
+            // Retrieve form data from localStorage
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            
+            if (formData) {
+                let html = `
+                    <div class="data-item">
+                        <h5><i class="fas fa-user me-2"></i>Ad Soyad</h5>
+                        <p>${formData.name || 'Belirtilmemiş'}</p>
+                    </div>
+                    
+                    <div class="data-item">
+                        <h5><i class="fas fa-envelope me-2"></i>E-posta</h5>
+                        <p>${formData.email || 'Belirtilmemiş'}</p>
+                    </div>
+                    
+                    <div class="data-item">
+                        <h5><i class="fas fa-phone me-2"></i>Telefon</h5>
+                        <p>${formData.phone || 'Belirtilmemiş'}</p>
+                    </div>
+                    
+                    <div class="data-item">
+                        <h5><i class="fas fa-tag me-2"></i>Konu</h5>
+                        <p>${getSubjectText(formData.subject)}</p>
+                    </div>
+                    
+                    <div class="data-item">
+                        <h5><i class="fas fa-comments me-2"></i>Mesaj</h5>
+                        <p>${formData.message || 'Belirtilmemiş'}</p>
+                    </div>
+                    
+                    <div class="data-item">
+                        <h5><i class="fas fa-paper-plane me-2"></i>Tercih Edilen İletişim Yöntemleri</h5>
+                        <ul class="list-unstyled">
+                            ${formData.contactMethods.email ? '<li><i class="fas fa-check text-success me-2"></i>E-posta</li>' : ''}
+                            ${formData.contactMethods.phone ? '<li><i class="fas fa-check text-success me-2"></i>Telefon</li>' : ''}
+                            ${!formData.contactMethods.email && !formData.contactMethods.phone ? '<li>Belirtilmemiş</li>' : ''}
+                        </ul>
+                    </div>
+                `;
+                
+                displayContainer.innerHTML = html;
+            } else {
+                displayContainer.innerHTML = `
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Form verileri bulunamadı. Lütfen iletişim formunu tekrar doldurun.
+                    </div>
+                `;
+            }
+            
+            // Clear the stored data after display
+            localStorage.removeItem('formData');
+            
+            function getSubjectText(subject) {
+                const subjects = {
+                    'question': 'Sorular',
+                    'feedback': 'Geri Bildirim',
+                    'collaboration': 'İş Birliği',
+                    'other': 'Diğer'
+                };
+                return subjects[subject] || 'Belirtilmemiş';
+            }
+        });
+    </script>
+</body>
+</html>
