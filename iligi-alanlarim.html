@@ -74,6 +74,7 @@
                     <h4><i class="fas fa-filter me-2"></i>Filmleri Filtrele</h4>
                     <div class="input-group">
                         <select class="form-select" id="genreSelect">
+                            <option value="">Tüm Kategoriler</option>
                             <option value="28">Aksiyon</option>
                             <option value="12">Macera</option>
                             <option value="16">Animasyon</option>
@@ -91,40 +92,46 @@
                 <div class="col-md-6">
                     <div class="alert alert-info mb-0">
                         <i class="fas fa-info-circle me-2"></i>
-                        Veriler The Movie Database API'sinden gerçek zamanlı olarak çekilmektedir.
+                        Lütfen bir kategori seçin ve "Getir" butonuna basın.
                     </div>
                 </div>
-            </div>
+            </div><br>
         </section>
 
-        <!-- Loading Spinner -->
+        <!-- Loading Spinner (hidden by default) -->
         <div class="text-center">
-            <div class="spinner-border loading-spinner text-danger" role="status">
+            <div class="spinner-border loading-spinner text-danger" role="status" style="display: none;">
                 <span class="visually-hidden">Yükleniyor...</span>
             </div>
         </div>
 
-        <!-- Movies Container -->
-        <div class="row" id="moviesContainer">
-            <!-- Movies will be inserted here by JavaScript -->
+        <!-- Empty State Message -->
+        <div class="text-center mt-5" id="emptyState">
+            <div class="alert alert-warning animate__animated animate__fadeIn">
+                <i class="fas fa-film me-2"></i>
+                Henüz film gösterilmiyor. Lütfen bir kategori seçip "Getir" butonuna basın.
+            </div>
         </div>
 
-        <!-- API Information -->
-        <br><br><br><br><section class="mt-5">
-            <div class="card bg-light">
-                <div class="card-body">
-                    <h4><i class="fas fa-code me-2"></i>API Entegrasyonu Hakkında</h4>
-                    <p>
-                        Bu sayfa, The Movie Database (TMDB) API'sini kullanarak popüler film verilerini göstermektedir.
-                        JavaScript Fetch API kullanılarak veriler çekilmekte ve dinamik olarak sayfaya render edilmektedir.
-                    </p>
-                    <a href="https://www.themoviedb.org/documentation/api" target="_blank" class="btn btn-outline-danger">
-                        <i class="fas fa-external-link-alt me-1"></i>TMDB API Dokümantasyonu
-                    </a>
-                </div>
+        <!-- Movies Container (initially empty) -->
+        <div class="row" id="moviesContainer"></div>
+
+       <!-- API Information -->
+       <br><br><br><br><section class="mt-5">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h4><i class="fas fa-code me-2"></i>API Entegrasyonu Hakkında</h4>
+                <p>
+                    Bu sayfa, The Movie Database (TMDB) API'sini kullanarak popüler film verilerini göstermektedir.
+                    JavaScript Fetch API kullanılarak veriler çekilmekte ve dinamik olarak sayfaya render edilmektedir.
+                </p>
+                <a href="https://www.themoviedb.org/documentation/api" target="_blank" class="btn btn-outline-danger">
+                    <i class="fas fa-external-link-alt me-1"></i>TMDB API Dokümantasyonu
+                </a>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
     <!-- Footer -->
    <br><br><br><br><br><br><br><br>
@@ -147,7 +154,7 @@
     <!-- Custom JavaScript for API Integration -->
     <script>
         // API Configuration
-        const API_KEY = 'YOUR_TMDB_API_KEY'; // Replace with your actual API key
+        const API_KEY = '7f254f494fdad39716a7d3cb952fcd6f';
         const BASE_URL = 'https://api.themoviedb.org/3';
         const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -156,18 +163,31 @@
         const fetchButton = document.getElementById('fetchMovies');
         const genreSelect = document.getElementById('genreSelect');
         const loadingSpinner = document.querySelector('.loading-spinner');
+        const emptyState = document.getElementById('emptyState');
+
+        // Hide movies container initially
+        moviesContainer.style.display = 'none';
 
         // Fetch Movies Function
         async function fetchMovies(genreId) {
             try {
-                // Show loading spinner
+                // Show loading spinner and hide empty state
                 loadingSpinner.style.display = 'block';
+                emptyState.style.display = 'none';
+                moviesContainer.style.display = 'none';
                 moviesContainer.innerHTML = '';
 
-                const response = await fetch(
-                    `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=tr-TR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}`
-                );
+                let apiUrl;
+                if (genreId) {
+                    // Fetch movies by genre if genre is selected
+                    apiUrl = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=tr-TR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}`;
+                } else {
+                    // Fetch popular movies if no genre is selected
+                    apiUrl = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=tr-TR&page=1`;
+                }
 
+                const response = await fetch(apiUrl);
+                
                 if (!response.ok) {
                     throw new Error('API request failed');
                 }
@@ -176,61 +196,78 @@
                 displayMovies(data.results);
             } catch (error) {
                 console.error('Error fetching movies:', error);
-                moviesContainer.innerHTML = `
-                    <div class="col-12">
-                        <div class="alert alert-danger">
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                            Filmler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.
-                        </div>
+                emptyState.style.display = 'block';
+                emptyState.innerHTML = `
+                    <div class="alert alert-danger animate__animated animate__shakeX">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Filmler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.
                     </div>
                 `;
             } finally {
-                // Hide loading spinner
                 loadingSpinner.style.display = 'none';
             }
         }
 
-        // Display Movies Function
+        // Display Movies Function with Rating Effects
         function displayMovies(movies) {
-            moviesContainer.innerHTML = '';
-
-            if (movies.length === 0) {
-                moviesContainer.innerHTML = `
-                    <div class="col-12">
-                        <div class="alert alert-warning">
-                            <i class="fas fa-info-circle me-2"></i>
-                            Seçtiğiniz kategoride film bulunamadı.
-                        </div>
+            if (!movies || movies.length === 0) {
+                emptyState.style.display = 'block';
+                emptyState.innerHTML = `
+                    <div class="alert alert-warning animate__animated animate__fadeIn">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Seçtiğiniz kategoride film bulunamadı.
                     </div>
                 `;
                 return;
             }
 
+            // Clear previous movies
+            moviesContainer.innerHTML = '';
+            
+            // Show movies container
+            moviesContainer.style.display = 'flex';
+            
+            // Process and display movies
             movies.slice(0, 8).forEach(movie => {
                 const movieCard = document.createElement('div');
-                movieCard.className = 'col-md-6 col-lg-3';
+                movieCard.className = 'col-md-6 col-lg-3 mb-4 animate__animated animate__fadeInUp';
+                
+                // Calculate rating color (green > 7, yellow > 5, red <= 5)
+                const rating = movie.vote_average;
+                let ratingColor;
+                if (rating > 7) {
+                    ratingColor = 'success';
+                } else if (rating > 5) {
+                    ratingColor = 'warning';
+                } else {
+                    ratingColor = 'danger';
+                }
+                
                 movieCard.innerHTML = `
-                    <div class="movie-card">
-                        <img src="${movie.poster_path ? IMAGE_BASE_URL + movie.poster_path : 'images/no-poster.jpg'}" 
+                    <div class="card h-100 shadow-sm">
+                        <img src="${movie.poster_path ? IMAGE_BASE_URL + movie.poster_path : 'https://via.placeholder.com/300x450?text=Poster+Yok'}" 
                              class="card-img-top" 
                              alt="${movie.title}"
-                             onerror="this.src='images/no-poster.jpg'">
+                             onerror="this.src='https://via.placeholder.com/300x450?text=Poster+Yok'">
                         <div class="card-body">
-                            <div class="rating-badge">
-                                ${movie.vote_average.toFixed(1)}
+                            <!-- Rating badge with pulse animation -->
+                            <div class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-${ratingColor} animate__animated animate__pulse" style="font-size: 1rem;">
+                                ${rating.toFixed(1)}
                             </div>
                             <h5 class="card-title">${movie.title}</h5>
                             <p class="card-text text-muted">
                                 <small>
                                     ${movie.release_date ? movie.release_date.split('-')[0] : 'Tarih yok'}
-                                    • ${movie.genre_ids.map(id => getGenreName(id)).join(', ')}
+                                    • ${movie.genre_ids ? movie.genre_ids.map(id => getGenreName(id)).join(', ') : 'Kategori yok'}
                                 </small>
                             </p>
                             <p class="card-text">
                                 ${movie.overview ? movie.overview.substring(0, 100) + '...' : 'Açıklama yok'}
                             </p>
-                            <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank" class="btn btn-sm btn-outline-danger">
-                                Detaylar
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank" class="btn btn-sm btn-outline-danger w-100">
+                                <i class="fas fa-info-circle me-1"></i> Detaylar
                             </a>
                         </div>
                     </div>
@@ -271,9 +308,10 @@
             fetchMovies(genreId);
         });
 
-        // Initialize with popular movies
+        // Don't load movies automatically on page load
         document.addEventListener('DOMContentLoaded', () => {
-            fetchMovies(genreSelect.value);
+            // Just hide the empty state initially
+            emptyState.style.display = 'block';
         });
     </script>
 </body>
