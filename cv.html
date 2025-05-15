@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Meta tags and page setup -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syed Shaheer Ahmed - Özgeçmiş</title>
@@ -12,7 +13,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
- </head>
+    <!-- Custom CSS for skill bars -->
+    <style>
+        /* Skill bar container */
+        .skill-bar {
+            background: #e9ecef;
+            border-radius: 8px;
+            height: 18px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        /* Skill bar progress */
+        .skill-progress {
+            background: linear-gradient(90deg, #0d6efd 60%, #0dcaf0 100%);
+            height: 100%;
+            border-radius: 8px 0 0 8px;
+            transition: width 1.2s cubic-bezier(.4,2,.3,1);
+        }
+    </style>
+</head>
 <body>
     <!-- Animated Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top animate__animated animate__fadeInDown">
@@ -70,7 +89,7 @@
                         <h2 class="card-title">Syed Shaheer Ahmed</h2>
                         <p class="card-text text-muted">
                             <i class="fas fa-map-marker-alt me-1"></i> Sakarya, Türkiye<br>
-                            <i class="fas fa-envelope me-1"></i> syed.ahmed@ogr.sakarya.edu.tr<br>
+                            <i class="fas fa-envelope me-1" id="email-icon" style="cursor:pointer;"></i> syed.ahmed@ogr.sakarya.edu.tr<br>
                             <i class="fas fa-phone me-1"></i> +90 537 938 6900
                         </p>
                     </div>
@@ -84,26 +103,40 @@
             <div class="timeline">
                 <article class="timeline-item animate__animated animate__fadeIn">
                     <div class="card card-hover">
-                        <div class="card-body">
-                            <h4 class="card-title">Sakarya Üniversitesi</h4>
-                            <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> 2023 - Devam Ediyor</time>
-                            <p class="card-text mt-2">
-                                Bilgisayar Mühendisliği (Lisans)<br>
-                                <span class="badge bg-primary">GPA: 3.5/4.0</span>
-                            </p>
+                        <div class="card-body row align-items-center">
+                            <!-- University info on the left -->
+                            <div class="col-md-8">
+                                <h4 class="card-title">Sakarya Üniversitesi</h4>
+                                <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> 2023 - Devam Ediyor</time>
+                                <p class="card-text mt-2">
+                                    Bilgisayar Mühendisliği (Lisans)<br>
+                                    <span class="badge bg-primary">GPA: 3.5/4.0</span>
+                                </p>
+                            </div>
+                            <!-- University image on the right -->
+                            <div class="col-md-4 text-center">
+                                <img src="images/sakarya.jpg" alt="Sakarya Üniversitesi" class="img-fluid rounded shadow" style="max-width: 240px; max-height: 160px; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
                 </article>
                 
                 <article class="timeline-item animate__animated animate__fadeIn">
                     <div class="card card-hover">
-                        <div class="card-body">
-                            <h4 class="card-title">PakTürk Maarif Koleji</h4>
-                            <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> 2018 - 2022</time>
-                            <p class="card-text mt-2">
-                                Lise Diploması - Fen Bilimleri<br>
-                                <span class="badge bg-primary">Mezuniyet Notu: 92/100</span>
-                            </p>
+                        <div class="card-body row align-items-center">
+                            <!-- School info on the left -->
+                            <div class="col-md-8">
+                                <h4 class="card-title">PakTürk Maarif Koleji</h4>
+                                <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> 2018 - 2022</time>
+                                <p class="card-text mt-2">
+                                    Lise Diploması - Fen Bilimleri<br>
+                                    <span class="badge bg-primary">Mezuniyet Notu: 92/100</span>
+                                </p>
+                            </div>
+                            <!-- School image on the right -->
+                            <div class="col-md-4 text-center">
+                                <img src="images/pakturk.jpg" alt="PakTürk Maarif Koleji" class="img-fluid rounded shadow" style="max-width: 240px; max-height: 160px; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -118,18 +151,21 @@
                     <div class="card card-hover mb-4">
                         <div class="card-body">
                             <h5 class="card-title">Teknik Beceriler</h5>
+                            <!-- Skill bar for Python -->
                             <div class="skill-item">
                                 <p class="mb-1">Python <span class="float-end">85%</span></p>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 85%"></div>
                                 </div>
                             </div>
+                            <!-- Skill bar for Java -->
                             <div class="skill-item">
                                 <p class="mb-1">Java <span class="float-end">75%</span></p>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 75%"></div>
                                 </div>
                             </div>
+                            <!-- Skill bar for HTML/CSS -->
                             <div class="skill-item">
                                 <p class="mb-1">HTML/CSS <span class="float-end">90%</span></p>
                                 <div class="skill-bar">
@@ -143,18 +179,21 @@
                     <div class="card card-hover mb-4">
                         <div class="card-body">
                             <h5 class="card-title">Dil Becerileri</h5>
+                            <!-- Skill bar for English -->
                             <div class="skill-item">
                                 <p class="mb-1">İngilizce <span class="float-end">100%</span></p>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 90%"></div>
                                 </div>
                             </div>
+                            <!-- Skill bar for Turkish -->
                             <div class="skill-item">
                                 <p class="mb-1">Türkçe <span class="float-end">80%</span></p>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 80%"></div>
                                 </div>
                             </div>
+                            <!-- Skill bar for Urdu -->
                             <div class="skill-item">
                                 <p class="mb-1">Urduca <span class="float-end">100%</span></p>
                                 <div class="skill-bar">
@@ -173,39 +212,54 @@
             <div class="timeline">
                 <article class="timeline-item animate__animated animate__fadeIn">
                     <div class="card card-hover">
-                        <div class="card-body">
-                            <h4 class="card-title">Yazılım Stajyeri</h4>
-                            <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> Temmuz 2023 - Ağustos 2023</time>
-                            <p class="card-text mt-2">
-                                <strong>AITEC Teknoloji, İslamabad</strong><br>
-                                • Python ile veri analizi projelerinde yer aldım<br>                              
-                                • Yapay zeka modelleri üzerinde çalışmalar yaptım<br>
-                                • Yapay zekayı kullanarak farklı makine dili modelleri üzerinde çalıştım<br>
-                                • Python, C++ dillerini kullanarak farklı projeler yaptım
-
-                                
-                            </p>
+                        <div class="card-body row align-items-center">
+                            <!-- Experience info on the left -->
+                            <div class="col-md-8">
+                                <h4 class="card-title">Yazılım Stajyeri</h4>
+                                <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> Temmuz 2023 - Ağustos 2023</time>
+                                <p class="card-text mt-2">
+                                    <strong>AITEC Teknoloji, İslamabad</strong><br>
+                                    • Python ile veri analizi projelerinde yer aldım<br>                              
+                                    • Yapay zeka modelleri üzerinde çalışmalar yaptım<br>
+                                    • Yapay zekayı kullanarak farklı makine dili modelleri üzerinde çalıştım<br>
+                                    • Python, C++ dillerini kullanarak farklı projeler yaptım
+                                </p>
+                            </div>
+                            <!-- Experience image on the right -->
+                            <div class="col-md-4 text-center">
+                                <img src="images/AITEC.jpg" alt="AITEC Teknoloji" class="img-fluid rounded shadow" style="max-width: 320px; max-height: 200px; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
                 </article>
                 
                 <article class="timeline-item animate__animated animate__fadeIn">
                     <div class="card card-hover">
-                        <div class="card-body">
-                            <h4 class="card-title">Robotik</h4>
-                            <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> Haziran 2021 - Eylül 2022</time>
-                            <p class="card-text mt-2">
-                                <strong>Serbest Çalışma</strong><br>
-                                • Kodlama ve sensörler kullanarak bir grupla yapay zeka destekli robotik bir araba yaptık<br>
-                                • Yapay zeka ve kodlama kullanarak gökyüzü ayrıntılarını yakalamak için bir drone yaptım<br>
-                                • Tahta çubuklardan yapılmış arabaları sürmek için küçük bir elektrik motoru yaptım<br>                                
-                            </p>
+                        <div class="card-body row align-items-center">
+                            <!-- Robotics experience info on the left -->
+                            <div class="col-md-8">
+                                <h4 class="card-title">Robotik</h4>
+                                <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> Haziran 2021 - Eylül 2022</time>
+                                <p class="card-text mt-2">
+                                    <strong>Serbest Çalışma</strong><br>
+                                    • Kodlama ve sensörler kullanarak bir grupla yapay zeka destekli robotik bir araba yaptık<br>
+                                    • Yapay zeka ve kodlama kullanarak gökyüzü ayrıntılarını yakalamak için bir drone yaptım<br>
+                                    • Tahta çubuklardan yapılmış arabaları sürmek için küçük bir elektrik motoru yaptım<br>                                
+                                </p>
+                            </div>
+                            <!-- Robotics image on the right -->
+                            <div class="col-md-4 text-center">
+                                <img src="images/robotics.jpg" alt="Robotik" class="img-fluid rounded shadow" style="max-width: 320px; max-height: 200px; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
+                </article>
 
-                    <article class="timeline-item animate__animated animate__fadeIn">
-                        <div class="card card-hover">
-                            <div class="card-body">
+                <article class="timeline-item animate__animated animate__fadeIn">
+                    <div class="card card-hover">
+                        <div class="card-body row align-items-center">
+                            <!-- Web Developer experience info on the left -->
+                            <div class="col-md-8">
                                 <h4 class="card-title">Web Geliştirici</h4>
                                 <time class="text-muted"><i class="far fa-calendar-alt me-1"></i> Mayıs 2025 - Haziran 2025</time>
                                 <p class="card-text mt-2">
@@ -214,7 +268,12 @@
                                     • HTML, CSS ve JavaScript kullanarak responsive tasarımlar oluşturdum.                                    
                                 </p>
                             </div>
+                            <!-- Web Developer image on the right -->
+                            <div class="col-md-4 text-center">
+                                <img src="images/web.jpg" alt="Web Geliştirici" class="img-fluid rounded shadow" style="max-width: 320px; max-height: 200px; object-fit: cover;">
+                            </div>
                         </div>
+                    </div>
                 </article>
             </div>
         </section>
@@ -222,31 +281,34 @@
         <!-- Projects Section -->
         <section class="animate__animated animate__fadeInUp">
             <h2 class="section-title animate__animated animate__fadeInLeft"><i class="fas fa-project-diagram me-2"></i>Projeler</h2>
-            <div class="row">
+            <br><div class="row">
+                <!-- Akıllı Sınav Sistemi Project Card (highlighted and clickable) -->
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover h-100">
+                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="akilli-sinav-card" style="cursor:pointer; border: 2px solid #0d6efd; box-shadow: 0 0 16px #0d6efd55; animation: pulse 1.5s infinite alternate;">
                         <div class="card-body">
-                            <h5 class="card-title">Akıllı Sınav Sistemi</h5>
+                            <h5 class="card-title">Akıllı Sınav Sistemi <span style="color:#0d6efd; font-weight:bold;">(Tıklayın)</span></h5>
                             <p class="card-text">Python ve makine öğrenmesi kullanarak öğrenci performans analiz sistemi.</p>
                             <span class="badge bg-primary me-1">Python</span>
                             <span class="badge bg-primary">ML</span>
                         </div>
                     </div>
                 </div>
+                <!-- Kişisel Web Sitesi Project Card (highlighted and clickable) -->
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover h-100">
+                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="web-card" style="cursor:pointer; border: 2px solid #198754; box-shadow: 0 0 16px #19875455; animation: pulse-green 1.5s infinite alternate;">
                         <div class="card-body">
-                            <h5 class="card-title">Kişisel Web Sitesi</h5>
+                            <h5 class="card-title">Kişisel Web Sitesi <span style="color:#198754; font-weight:bold;">(Tıklayın)</span></h5>
                             <p class="card-text">HTML, CSS ve Bootstrap kullanarak responsive kişisel web sitesi.</p>
                             <span class="badge bg-primary me-1">HTML5</span>
                             <span class="badge bg-primary">Bootstrap</span>
                         </div>
                     </div>
                 </div>
+                <!-- Robot Tasarımı Project Card (highlighted and clickable) -->
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover h-100">
+                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="robot-card" style="cursor:pointer; border: 2px solid #fd7e14; box-shadow: 0 0 16px #fd7e1455; animation: pulse-orange 1.5s infinite alternate;">
                         <div class="card-body">
-                            <h5 class="card-title">Robot Tasarımı</h5>
+                            <h5 class="card-title">Robot Tasarımı <span style="color:#fd7e14; font-weight:bold;">(Tıklayın)</span></h5>
                             <p class="card-text">Robotikte çalışmak için AI ve Python'dan farklı sensörler kullanıldım</p>
                             <span class="badge bg-primary me-1">AI</span>
                             <span class="badge bg-primary">Python</span>
@@ -255,6 +317,58 @@
                     </div>
                 </div>
             </div>
+            <!-- Akıllı Sınav Sistemi Info Modal -->
+            <div id="akilli-sinav-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; box-shadow:0 4px 32px rgba(0,0,0,0.2); border-radius:16px; padding:24px;">
+                <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-akilli-sinav-modal"></button>
+                <h5 class="mb-3" style="color:#0d6efd;"><i class="fas fa-project-diagram me-2"></i>Akıllı Sınav Sistemi</h5>
+                <p><strong>Proje Açıklaması:</strong> Bu sistem, Python ve makine öğrenmesi algoritmaları kullanılarak geliştirilmiş bir öğrenci performans analiz platformudur. Öğrencilerin sınav sonuçlarını analiz ederek zayıf ve güçlü yönlerini belirler, kişiselleştirilmiş öneriler sunar ve öğretmenlere detaylı raporlar sağlar. Sistem, eğitimde verimliliği artırmayı ve öğrencilerin başarılarını maksimize etmeyi hedefler.</p>
+                <ul>
+                    <li>Makine öğrenmesi ile otomatik değerlendirme</li>
+                    <li>Öğrenciye özel gelişim raporları</li>
+                    <li>Veri görselleştirme ve analiz araçları</li>
+                    <li>Kullanıcı dostu arayüz</li>
+                </ul>
+            </div>
+            <!-- Kişisel Web Sitesi Info Modal -->
+            <div id="web-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; box-shadow:0 4px 32px rgba(0,0,0,0.2); border-radius:16px; padding:24px;">
+                <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-web-modal"></button>
+                <h5 class="mb-3" style="color:#198754;"><i class="fas fa-globe me-2"></i>Kişisel Web Sitesi</h5>
+                <p><strong>Proje Açıklaması:</strong> Kişisel web sitem, HTML5, CSS3 ve Bootstrap kullanılarak tamamen responsive olarak tasarlanmıştır. Modern ve kullanıcı dostu bir arayüze sahip olup, portföyümü, özgeçmişimi ve iletişim bilgilerimi sergilemektedir. SEO uyumlu ve hızlı yüklenen bir yapıya sahiptir.</p>
+                <ul>
+                    <li>Mobil ve masaüstü uyumlu responsive tasarım</li>
+                    <li>Bootstrap ile hızlı ve modern geliştirme</li>
+                    <li>Kişisel portföy ve iletişim formu</li>
+                    <li>SEO ve performans optimizasyonu</li>
+                </ul>
+            </div>
+            <!-- Robot Tasarımı Info Modal -->
+            <div id="robot-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; box-shadow:0 4px 32px rgba(0,0,0,0.2); border-radius:16px; padding:24px;">
+                <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-robot-modal"></button>
+                <h5 class="mb-3" style="color:#fd7e14;"><i class="fas fa-robot me-2"></i>Robot Tasarımı</h5>
+                <p><strong>Proje Açıklaması:</strong> Bu projede, yapay zeka ve Python programlama dili kullanılarak çeşitli sensörlerle donatılmış bir robot tasarlandı. Robot, çevresini algılayıp uygun tepkiler verebiliyor ve farklı görevleri otonom olarak yerine getirebiliyor. Proje, robotikte pratik uygulama ve algoritma geliştirme becerilerimi geliştirdi.</p>
+                <ul>
+                    <li>AI tabanlı sensör entegrasyonu</li>
+                    <li>Python ile robot kontrol algoritmaları</li>
+                    <li>Otonom hareket ve görev yönetimi</li>
+                    <li>Gerçek dünya testleri ve optimizasyon</li>
+                </ul>
+            </div>
+            <div id="project-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.15); z-index:1049;"></div>
+            <style>
+                /* Pulse animation for highlight */
+                @keyframes pulse {
+                    0% { box-shadow: 0 0 16px #0d6efd55; }
+                    100% { box-shadow: 0 0 32px #0d6efd; }
+                }
+                @keyframes pulse-green {
+                    0% { box-shadow: 0 0 16px #19875455; }
+                    100% { box-shadow: 0 0 32px #198754; }
+                }
+                @keyframes pulse-orange {
+                    0% { box-shadow: 0 0 16px #fd7e1455; }
+                    100% { box-shadow: 0 0 32px #fd7e14; }
+                }
+            </style>
         </section>
     </main>
 
@@ -293,6 +407,67 @@
             
             window.addEventListener('scroll', animateOnScroll);
             animateOnScroll(); // Run once on load
+        });
+
+        // Email icon confirmation popup
+        document.addEventListener('DOMContentLoaded', function() {
+            var emailIcon = document.getElementById('email-icon');
+            if(emailIcon) {
+                emailIcon.addEventListener('click', function() {
+                    window.confirm('E-posta adresim: syed.ahmed@ogr.sakarya.edu.tr');
+                });
+            }
+        });
+
+        // Project modals logic for all project cards
+        document.addEventListener('DOMContentLoaded', function() {
+            // Card and modal elements
+            var akilliSinavCard = document.getElementById('akilli-sinav-card');
+            var akilliSinavModal = document.getElementById('akilli-sinav-modal');
+            var closeAkilliSinavModal = document.getElementById('close-akilli-sinav-modal');
+            var webCard = document.getElementById('web-card');
+            var webModal = document.getElementById('web-modal');
+            var closeWebModal = document.getElementById('close-web-modal');
+            var robotCard = document.getElementById('robot-card');
+            var robotModal = document.getElementById('robot-modal');
+            var closeRobotModal = document.getElementById('close-robot-modal');
+            var projectOverlay = document.getElementById('project-overlay');
+
+            // Helper to hide all modals
+            function hideAllProjectModals() {
+                akilliSinavModal.style.display = 'none';
+                webModal.style.display = 'none';
+                robotModal.style.display = 'none';
+                projectOverlay.style.display = 'none';
+            }
+
+            if(akilliSinavCard && akilliSinavModal && closeAkilliSinavModal) {
+                akilliSinavCard.addEventListener('click', function() {
+                    hideAllProjectModals();
+                    akilliSinavModal.style.display = 'block';
+                    projectOverlay.style.display = 'block';
+                });
+                closeAkilliSinavModal.addEventListener('click', hideAllProjectModals);
+            }
+            if(webCard && webModal && closeWebModal) {
+                webCard.addEventListener('click', function() {
+                    hideAllProjectModals();
+                    webModal.style.display = 'block';
+                    projectOverlay.style.display = 'block';
+                });
+                closeWebModal.addEventListener('click', hideAllProjectModals);
+            }
+            if(robotCard && robotModal && closeRobotModal) {
+                robotCard.addEventListener('click', function() {
+                    hideAllProjectModals();
+                    robotModal.style.display = 'block';
+                    projectOverlay.style.display = 'block';
+                });
+                closeRobotModal.addEventListener('click', hideAllProjectModals);
+            }
+            if(projectOverlay) {
+                projectOverlay.addEventListener('click', hideAllProjectModals);
+            }
         });
     </script>
 </body>
