@@ -1,11 +1,13 @@
 <!-- 
     login.html
-    Purpose: Main login page for user authentication
-    Features:
-    - User login form
-    - AJAX form submission
-    - Error handling
-    - Responsive design
+    Purpose: User authentication page. Allows users to log in with their email and password.
+    Key Features:
+    - Bootstrap 5: For responsive layout, form styling, buttons, and alerts. Edited according to need.
+    - Font Awesome: For icons in navigation, form header, and buttons.
+    - Animate.css: For entry animation on the navigation bar and shake animation for error messages.
+    - Custom CSS (<style> block): For background image, text color adjustments, form control styling (semi-transparent), and transparent card background for the login form.
+    - JavaScript (Fetch API): For AJAX form submission to `submit-form.php`. Handles JSON response for success/failure and redirects or displays errors accordingly.
+    - HTML Forms: Standard login form with email, password, and "remember me" fields.
 -->
 
 <!DOCTYPE html>
@@ -125,11 +127,7 @@
                     <i class="fas fa-sign-in-alt me-2"></i> Giriş Yap
                 </button>
             </form>
-            <!-- Registration Link - For new users -->
-            <div class="register-link">
-                <br><p>Hesabınız yok mu? <a href="register.html">Kayıt Ol</a></p>
-            </div>
-        </div>
+           </div>
     </div>
 
     <!-- Footer Section - Contains social links and copyright information -->
