@@ -1,0 +1,191 @@
+<!-- 
+    welcome.html
+    Purpose: Welcome page displayed after successful login
+    Features:
+    - Welcome message
+    - Navigation options
+    - Logout functionality
+    - Responsive design
+    - Animated elements
+-->
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta tags for proper character encoding and responsive viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoş Geldiniz - Syed Shaheer Ahmed</title>
+    
+    <!-- External CSS and icon links for styling and icons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Custom styles for welcome page animations and effects -->
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        /* Floating card styling */
+        .floating-card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(145deg, #ffffff, #f0f7ff);
+            border: 2px solid #0d6efd;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(13, 110, 253, 0.2);
+            animation: floatIn 0.8s ease-out forwards, glowPulse 2s infinite;
+        }
+
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.7);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 20px rgba(13, 110, 253, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(13, 110, 253, 0.4); }
+            100% { box-shadow: 0 0 20px rgba(13, 110, 253, 0.2); }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .welcome-icon {
+            font-size: 4rem;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+
+        /* Add space for content */
+        main {
+            flex: 1;
+            padding: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar - Contains links to all main pages -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top animate__animated animate__fadeInDown" style="background-color: #000000;">
+        <div class="container">
+            <!-- Brand/Logo section -->
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-user-circle me-2"></i>Syed Shaheer Ahmed
+            </a>
+            <!-- Mobile menu toggle button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navigation menu items -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Navigation links to different pages -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cv.html"><i class="fas fa-file-alt me-1"></i> Özgeçmiş</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sehir.html"><i class="fas fa-city me-1"></i> Şehrim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mirasimiz.html"><i class="fas fa-landmark me-1"></i> Mirasımız</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="iligi-alanlarim.html"><i class="fas fa-file-alt me-1"></i> İlgi Alanlarım</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="iletisim.html"><i class="fas fa-envelope me-1"></i> İletişim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="fas fa-sign-out-alt me-1"></i> Çıkış</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Overlay -->
+        <div class="overlay"></div>
+
+        <!-- Floating Welcome Card -->
+        <div class="floating-card">
+            <div class="card-body text-center p-5">
+                <i class="fas fa-user-circle welcome-icon animate__animated animate__bounceIn"></i>
+                <h1 class="card-title mb-4 animate__animated animate__fadeInDown" style="color: #0d6efd;">
+                    Hoş Geldiniz!
+                </h1>
+                <h4 class="mb-4 animate__animated animate__fadeInUp">Syed Shaheer Ahmed</h4>
+                <p class="card-text mb-4 animate__animated animate__fadeIn" style="font-size: 1.2rem;">
+                    Başarıyla giriş yaptınız. Şimdi sitemizin tüm özelliklerine erişebilirsiniz.
+                </p>
+                <div class="mt-4 animate__animated animate__fadeInUp">
+                    <a href="index.html" class="btn btn-primary btn-lg me-2">
+                        <i class="fas fa-home me-2"></i>Ana Sayfaya Git
+                    </a>
+                    <a href="login.html" class="btn btn-outline-danger btn-lg">
+                        <i class="fas fa-sign-out-alt me-2"></i>Çıkış Yap
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section - Contains social links and copyright information -->
+    <footer class="text-center py-4 mt-5" style="background-color: rgba(0,0,0,0.8); color: white;">
+        <div class="container">
+            <!-- Social Media Links -->
+            <div class="mb-3">
+                <a href="https://www.instagram.com/_lifeisposh._/?__pwa=1#" target="_blank" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="text-white mx-2"><i class="fas fa-envelope fa-lg"></i></a>
+                <a href="https://www.linkedin.com/in/shaheer-ahmed-7359b2290/overlay/about-this-profile/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BcgExK5fAQfOsoR01rQVUvw%3D%3D" target="_blank" class="text-white mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/account" target="_blank" class="text-white mx-2"><i class="fab fa-github fa-lg"></i></a>
+            </div>
+            <!-- Copyright Information -->
+            <p>&copy; 2023 Syed Shaheer Ahmed - Tüm Hakları Saklıdır</p>
+            <p>Sakarya Üniversitesi - Bilgisayar Mühendisliği</p>
+        </div>
+    </footer>
+
+    <!-- External JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
