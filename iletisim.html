@@ -16,12 +16,40 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background: url('images/contact.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .navbar {
+            background-color: #000 !important;
+        }
+        .contact-form-container {
+            background: rgba(13, 110, 253, 0.12);
+            border: 2px solid #0d6efd;
+            box-shadow: 0 0 24px #0d6efd33;
+            border-radius: 18px;
+        }
+        .contact-form-container .form-header h2,
+        .contact-form-container .form-header p {
+            color: #fff !important;
+        }
+        .contact-form-container .form-label,
+        .contact-form-container .form-floating label {
+            color: #000 !important;
+        }
+        /* Keep checkboxes, contact method preference label, and form header white */
+        .contact-form-container .form-check-label,
+        .contact-form-container label.form-label {
+            color: #fff !important;
+        }
+    </style>
   </head>
 <body>
     <!-- Vue.js App Container -->
     <div id="app">
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top animate__animated animate__fadeInDown">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top animate__animated animate__fadeInDown">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <i class="fas fa-user-circle me-2"></i>Syed Shaheer Ahmed

@@ -14,7 +14,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Interest card specific colors */
+        #ai-main-card {
+            border: 2px solid #4285f4;
+            background: linear-gradient(145deg, #ffffff, #f0f7ff);
+            transition: all 0.3s ease;
+        }
+        #ai-main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(66, 133, 244, 0.2);
+        }
+        #ai-info-card {
+            border: 2px solid #4285f4;
+            background: linear-gradient(145deg, #ffffff, #f0f7ff);
+        }
 
+        #football-main-card {
+            border: 2px solid #34a853;
+            background: linear-gradient(145deg, #ffffff, #f0fff4);
+            transition: all 0.3s ease;
+        }
+        #football-main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(52, 168, 83, 0.2);
+        }
+        #football-info-card {
+            border: 2px solid #34a853;
+            background: linear-gradient(145deg, #ffffff, #f0fff4);
+        }
+
+        #tourism-main-card {
+            border: 2px solid #ea4335;
+            background: linear-gradient(145deg, #ffffff, #fff0f0);
+            transition: all 0.3s ease;
+        }
+        #tourism-main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(234, 67, 53, 0.2);
+        }
+        #tourism-info-card {
+            border: 2px solid #ea4335;
+            background: linear-gradient(145deg, #ffffff, #fff0f0);
+        }
+
+        /* Update info cards base style */
+        .interest-info-card {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+            min-width: 300px;
+            max-width: 90vw;
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+        }
+    </style>
 </head>
 <body class="gradient-bg">
     <!-- Navigation Bar with Custom Style -->
@@ -60,7 +118,7 @@
         <div class="row justify-content-center mb-5">
             <div class="col-md-8 col-lg-6">
                 <div class="card profile-card mb-4">
-                    <img src="images/shaheer.jpg" width="632" height="200" class="card-body profile-img" alt="Syed Shaheer Ahmed">
+                    <img src="images/shaheer.jpg" class="card-body profile-img img-fluid w-100" alt="Syed Shaheer Ahmed">
                     <div class="card-body text-center">
                         <h3 class="card-title special-title">Syed Shaheer Ahmed</h3>
                        <br><p class="card-text text-muted">Sakarya Üniversitesi - Bilgisayar Mühendisliği</p>
@@ -142,33 +200,50 @@
             <h2 class="text-center mb-4 special-title" style="display: inline-block;">İlgi Alanlarım</h2>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card custom-card h-100">
+                    <div class="card h-100 interest-card" id="ai-main-card" style="cursor:pointer;">
                         <img src="images/ai.jpg" class="card-img-top" alt="Yapay Zeka" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-brain me-2"></i>Yapay Zeka</h5>
+                            <h5 class="card-title" style="color: #4285f4;"><i class="fas fa-brain me-2"></i>Yapay Zeka</h5>
                             <p class="card-text">AI ve makine öğrenmesi alanındaki gelişmeleri takip ediyorum.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card custom-card h-100">
+                    <div class="card h-100 interest-card" id="football-main-card" style="cursor:pointer;">
                         <img src="images/football.jpg" class="card-img-top" alt="Futbol" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-futbol me-2"></i>Futbol</h5>
+                            <h5 class="card-title" style="color: #34a853;"><i class="fas fa-futbol me-2"></i>Futbol</h5>
                             <p class="card-text">FC Barcelona'nın oyun stilini ve futbol stratejilerini inceliyorum.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card custom-card h-100">
+                    <div class="card h-100 interest-card" id="tourism-main-card" style="cursor:pointer;">
                         <img src="images/tourism.jpg" class="card-img-top" alt="Seyahat" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-plane me-2"></i>Seyahat</h5>
+                            <h5 class="card-title" style="color: #ea4335;"><i class="fas fa-plane me-2"></i>Seyahat</h5>
                             <p class="card-text">Yeni kültürler keşfetmek ve farklı yerler görmek en büyük tutkum.</p>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Hidden Info Cards -->
+            <div id="ai-info-card" class="interest-info-card">
+                <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-ai-info"></button>
+                <h5 class="mb-3" style="color: #4285f4;"><i class="fas fa-brain me-2"></i>Yapay Zeka</h5>
+                <p>Yapay zeka (AI), insan zekâsını taklit eden ve insan benzeri görevleri yerine getirebilen sistemlerdir. Makine öğrenmesi, derin öğrenme ve doğal dil işleme gibi alanları kapsar. AI, sağlık, otomotiv, finans, eğitim ve daha birçok sektörde devrim yaratmaktadır. Gelecekte, AI'nın günlük yaşamımızda daha da büyük bir rol oynaması beklenmektedir.</p>
+            </div>
+            <div id="football-info-card" class="interest-info-card">
+                <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-football-info"></button>
+                <h5 class="mb-3" style="color: #34a853;"><i class="fas fa-futbol me-2"></i>Futbol</h5>
+                <p>Futbol, dünyanın en popüler sporlarından biridir. Takım oyunu, strateji ve fiziksel dayanıklılık gerektirir. FC Barcelona'nın oyun stili ve futbol stratejileri, modern futbolun gelişiminde önemli bir rol oynamıştır. Futbol, hem izlemek hem de oynamak için büyük bir tutkudur.</p>
+            </div>
+            <div id="tourism-info-card" class="interest-info-card">
+                <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-tourism-info"></button>
+                <h5 class="mb-3" style="color: #ea4335;"><i class="fas fa-plane me-2"></i>Seyahat</h5>
+                <p>Seyahat etmek, yeni kültürler keşfetmek ve farklı yerler görmek için harika bir yoldur. Seyahat, insanın ufkunu genişletir, yeni insanlarla tanışmayı ve farklı yaşam tarzlarını deneyimlemeyi sağlar. Her seyahat, yeni bir macera ve unutulmaz anılar demektir.</p>
+            </div>
+            <div id="interest-info-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:transparent; z-index:1049;"></div>
         </section>
     </main>
 
@@ -188,5 +263,54 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Interactive info card for 'İlgi Alanlarım'
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show AI info card
+        document.getElementById('ai-main-card').addEventListener('click', function() {
+            hideAllInterestInfoCards();
+            document.getElementById('ai-info-card').style.display = 'block';
+            document.getElementById('interest-info-overlay').style.display = 'block';
+        });
+        // Show Football info card
+        document.getElementById('football-main-card').addEventListener('click', function() {
+            hideAllInterestInfoCards();
+            document.getElementById('football-info-card').style.display = 'block';
+            document.getElementById('interest-info-overlay').style.display = 'block';
+        });
+        // Show Tourism info card
+        document.getElementById('tourism-main-card').addEventListener('click', function() {
+            hideAllInterestInfoCards();
+            document.getElementById('tourism-info-card').style.display = 'block';
+            document.getElementById('interest-info-overlay').style.display = 'block';
+        });
+        // Hide AI info card
+        document.getElementById('close-ai-info').addEventListener('click', function() {
+            document.getElementById('ai-info-card').style.display = 'none';
+            document.getElementById('interest-info-overlay').style.display = 'none';
+        });
+        // Hide Football info card
+        document.getElementById('close-football-info').addEventListener('click', function() {
+            document.getElementById('football-info-card').style.display = 'none';
+            document.getElementById('interest-info-overlay').style.display = 'none';
+        });
+        // Hide Tourism info card
+        document.getElementById('close-tourism-info').addEventListener('click', function() {
+            document.getElementById('tourism-info-card').style.display = 'none';
+            document.getElementById('interest-info-overlay').style.display = 'none';
+        });
+        // Hide on overlay click
+        document.getElementById('interest-info-overlay').addEventListener('click', function() {
+            hideAllInterestInfoCards();
+            document.getElementById('interest-info-overlay').style.display = 'none';
+        });
+        // Helper to hide all info cards
+        function hideAllInterestInfoCards() {
+            document.getElementById('ai-info-card').style.display = 'none';
+            document.getElementById('football-info-card').style.display = 'none';
+            document.getElementById('tourism-info-card').style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>

@@ -1,31 +1,69 @@
+<!-- 
+    login.html
+    Purpose: Main login page for user authentication
+    Features:
+    - User login form
+    - AJAX form submission
+    - Error handling
+    - Responsive design
+-->
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Meta tags for proper character encoding and responsive viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giriş - Syed Shaheer Ahmed</title>
-    <!-- Favicon (Standard ICO format) -->
+    
+    <!-- External CSS and icon links for styling and icons -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-   
+    <style>
+        body {
+            background: url('images/login.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        .container, .login-header, .login-header h2, .login-header p, .register-link, .form-label, .form-check-label, .navbar, .navbar-nav, .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .form-control {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        .form-control::placeholder {
+            color: #eee;
+        }
+        .card, .login-container {
+            background: transparent !important;
+            border-radius: 16px;
+        }
+        footer, footer * {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation Bar - Contains links to all main pages -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top animate__animated animate__fadeInDown" style="background-color:  #000000;">
         <div class="container">
+            <!-- Brand/Logo section -->
             <a class="navbar-brand fw-bold" href="#">
                 <i class="fas fa-user-circle me-2"></i>Syed Shaheer Ahmed
             </a>
+            <!-- Mobile menu toggle button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Navigation menu items -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <!-- Navigation links to different pages -->
                     <li class="nav-item">
                         <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Hakkında</a>
                     </li>
@@ -39,9 +77,9 @@
                         <a class="nav-link" href="mirasimiz.html"><i class="fas fa-landmark me-1"></i> Mirasımız</a>
                     </li>
                     <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="iligi-alanlarim.html"><i class="fas fa-file-alt me-1"></i> Iligi-alanlarim</a>
-                        </li>
+                        <a class="nav-link" href="iligi-alanlarim.html"><i class="fas fa-file-alt me-1"></i> Iligi-alanlarim</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="iletisim.html"><i class="fas fa-envelope me-1"></i> İletişim</a>
                     </li>
                     <li class="nav-item">
@@ -52,51 +90,105 @@
         </div>
     </nav>
 
-    <!-- Login Form -->
+    <!-- Main Login Container - Contains the login form -->
     <div class="container" style="text-align:left; font-size: x-large; font-weight: 300;">
         <div class="login-container">
+            <!-- Login Header Section - Contains title and error message container -->
             <div class="login-header">
                 <br><br><h2><i class="fas fa-user-circle me-2"></i>Giriş Yap</h2>
                 <br><p class="text-muted">Hesabınıza giriş yapın</p>
+                <!-- Error Message Container - Hidden by default, shown on login failure -->
+                <div id="error-message" class="alert alert-danger d-none" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>Geçersiz e-posta veya şifre!
+                </div>
             </div>
-            <form action="login.php" method="POST" class="login-form">
+
+            <!-- Login Form - Handles user authentication -->
+            <form action="submit-form.php" method="POST" class="login-form">
+                <!-- Email Input Field -->
                 <div class="mb-3">
                    <br> <label for="email" class="form-label">E-posta</label>
                     <input type="email" placeholder="b1812100001@sakarya.edu.tr" class="form-control" id="email" name="email" required>
                 </div>
+                <!-- Password Input Field -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Şifre</label>
                     <input type="password" placeholder="b2412100001" class="form-control" id="password" name="password" required>
                 </div>
+                <!-- Remember Me Checkbox -->
                 <br><div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="remember" name="remember">
                     <label class="form-check-label" for="remember">Beni hatırla</label>
                 </div>
+                <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary login-btn">
                     <i class="fas fa-sign-in-alt me-2"></i> Giriş Yap
                 </button>
             </form>
+            <!-- Registration Link - For new users -->
             <div class="register-link">
                 <br><p>Hesabınız yok mu? <a href="register.html">Kayıt Ol</a></p>
             </div>
         </div>
     </div>
 
-    <!-- Footer with Custom Style -->
+    <!-- Footer Section - Contains social links and copyright information -->
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <footer class="text-center py-4" style="background-color: rgba(0,0,0,0.8); color: white;">
         <div class="container">
+            <!-- Social Media Links -->
             <div class="mb-3">
                 <a href="https://www.instagram.com/_lifeisposh._/?__pwa=1#" target="_blank" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="text-white mx-2"><i class="fas fa-envelope fa-lg"></i></a>
                 <a href="https://www.linkedin.com/in/shaheer-ahmed-7359b2290/overlay/about-this-profile/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BcgExK5fAQfOsoR01rQVUvw%3D%3D" target="_blank" class="text-white mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
                 <a href="https://github.com/account" target="_blank" class="text-white mx-2"><i class="fab fa-github fa-lg"></i></a>
             </div>
+            <!-- Copyright Information -->
             <p>&copy; 2023 Syed Shaheer Ahmed - Tüm Hakları Saklıdır</p>
             <p>Sakarya Üniversitesi - Bilgisayar Mühendisliği</p>
         </div>
     </footer>
-    <!-- Bootstrap JS -->
+
+    <!-- External JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
- </body>
+    
+    <!-- Custom JavaScript for Form Handling -->
+    <script>
+        // Add event listener to the login form for handling form submission
+        document.querySelector('.login-form').addEventListener('submit', function(e) {
+            // Prevent default form submission to handle it with AJAX
+            e.preventDefault();
+            
+            // Create FormData object from the form for AJAX submission
+            const formData = new FormData(this);
+            const errorMessage = document.getElementById('error-message');
+            
+            // Send AJAX request to submit-form.php for authentication
+            fetch('submit-form.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to welcome page on successful login
+                    window.location.href = data.redirect;
+                } else {
+                    // Show error message with animation on failed login
+                    errorMessage.classList.remove('d-none');
+                    errorMessage.classList.add('animate__animated', 'animate__shakeX');
+                    // Remove animation class after 1 second
+                    setTimeout(() => {
+                        errorMessage.classList.remove('animate__animated', 'animate__shakeX');
+                    }, 1000);
+                }
+            })
+            .catch(error => {
+                // Handle any errors during the fetch request
+                console.error('Error:', error);
+                errorMessage.classList.remove('d-none');
+            });
+        });
+    </script>
+</body>
 </html>

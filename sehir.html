@@ -12,6 +12,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .hidden-description { display: none; }
+        body {
+            color: #111;
+            position: relative;
+        }
+        /* Remove the overlay */
+        /* Ensure main content is above the overlay */
+        body > * { position: relative; z-index: 1; }
+        /* Make all main text black for readability */
+        .container, .card, .fact-box, .attraction-card, .city-header, .carousel-caption, .card-title, .card-text, .lead, h1, h2, h3, h4, h5, h6, p, .section-title {
+            color: #111 !important;
+        }
+        /* Make the footer more solid black and text white */
+        footer, footer * {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+        /* Make the text in the İklim section black for readability */
+        .card.bg-light, .card.bg-light * {
+            color: #111 !important;
+        }
+        /* Make the 'Yeşil Şehir' text black for readability */
+        .row.mb-5 .mb-4 {
+            color: #111 !important;
+        }
+        /* Make the slider (carousel-caption) text white for readability */
+        .carousel-caption, .carousel-caption * {
+            color: #fff !important;
+            text-shadow: 1px 1px 8px #000;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -93,7 +125,7 @@
                     <div class="carousel-item active">
                         <img src="images/islamabad1.jpg" class="d-block w-100" alt="Faisal Camii" height="730">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5><a href="https://en.wikipedia.org/wiki/Faisal_Mosque" target="_blank" class="text-white">Faisal Camii</a></h5>
+                            <h5><a href="#faisal-mosque" class="text-white">Faisal Camii</a></h5>
                             <p>Güney Asya'nın en büyük camisi</p>
                         </div>
                     </div>
@@ -102,7 +134,7 @@
                     <div class="carousel-item">
                         <img src="images/islamabad2.jpg" class="d-block w-100" alt="Margalla Tepeleri">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5><a href="https://en.wikipedia.org/wiki/Margalla_Hills" target="_blank" class="text-white">Margalla Tepeleri</a></h5>
+                            <h5><a href="#margalla-hills" class="text-white">Margalla Tepeleri</a></h5>
                             <p>Doğa yürüyüşü ve manzara için mükemmel</p>
                         </div>
                     </div>
@@ -111,7 +143,7 @@
                     <div class="carousel-item">
                         <img src="images/islamabad3.jpg" class="d-block w-100" alt="Pakistan Anıtı" height="730">
                         <div class="carousel-caption d-none d-md-block"> 
-                            <h5><a href="https://en.wikipedia.org/wiki/Pakistan_Monument" target="_blank" class="text-white">Pakistan Anıtı</a></h5>
+                            <h5><a href="#pakistan-monument" class="text-white">Pakistan Anıtı</a></h5>
                             <p>Ülkenin tarihini simgeleyen mimari harika</p>
                         </div>
                     </div>
@@ -120,7 +152,7 @@
                     <div class="carousel-item">
                         <img src="images/islamabad4.jpg" class="d-block w-100" alt="Daman-e-Koh" height="730">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5><a href="https://en.wikipedia.org/wiki/Daman-e-Koh" target="_blank" class="text-white">Daman-e-Koh</a></h5>
+                            <h5><a href="#daman-e-koh" class="text-white">Daman-e-Koh</a></h5>
                             <p>Şehrin panoramik manzarası</p>
                         </div>
                     </div>
@@ -181,10 +213,11 @@
                         <img src="images/faisal-mosque.jpg" class="card-img-top" alt="Faisal Camii" height="210">
                         <div class="card-body">
                             <br><h5 class="card-title">Faisal Camii</h5>
-                            <p class="card-text">
-                                Türk mimar Vedat Dalokay'ın tasarımı olan bu cami, modern İslam mimarisinin başyapıtıdır.
-                            </p>
-                            <a href="https://en.wikipedia.org/wiki/Faisal_Mosque" target="_blank" class="btn btn-outline-primary">Detaylar</a>
+                            <p class="card-text hidden-description">Faisal Camii, başkent İslamabad'da bulunan Pakistan'ın ulusal camisidir. Dünyanın altıncı büyük camisi, 
+                                Orta Doğu dışındaki en büyük cami ve Güney Asya'daki en büyük cami olup Margalla Tepeleri'nin eteklerinde yer almaktadır. Adını Suudi Arabistan'ın 
+                                merhum Kralı Faisal'dan (r. 1964–75) almıştır. Cami, sekiz tarafı beton kabuktan oluşan çağdaş bir tasarıma sahiptir ve tipik bir Bedevi çadırının 
+                                tasarımından esinlenmiştir. Pakistan'da önemli bir turistik cazibe merkezi olan cami, çağdaş ve etkili bir İslam mimarisi parçasıdır.</p>
+                           <br> <a href="#faisal-mosque" class="btn btn-outline-primary detay-btn" data-target="faisal-mosque">Detaylar</a>
                         </div>
                     </div>
                 </div>
@@ -195,10 +228,11 @@
                         <img src="images/margalla-hills.jpg" class="card-img-top" alt="Margalla Tepeleri" height="210">
                         <div class="card-body">
                             <br><h5 class="card-title">Margalla Tepeleri</h5>
-                            <p class="card-text">
-                                Himalayalar'ın batı uzantısı olan bu tepeler, doğa yürüyüşü ve kuş gözlemciliği için idealdir.
-                            </p>
-                            <a href="https://en.wikipedia.org/wiki/Margalla_Hills" target="_blank" class="btn btn-outline-primary">Detaylar</a>
+                            <p class="card-text hidden-description">Margalla Tepeleri, Pakistan'ın İslamabad Başkent Bölgesi'nin kuzey ucunda, Hayber Pahtunhva'nın Haripur Bölgesi'nin hemen 
+                                güneyinde bulunan Margalla Tepeleri Milli Parkı'ndaki bir tepe sırasıdır. Himalaya eteklerinin bir parçasıdır. Margalla Sıradağları 12.605 hektarlık bir alana 
+                                sahiptir. Birçok vadinin yanı sıra yüksek dağların da bulunduğu bir sıradağdır. Margalla Tepeleri'nde yaklaşık 250 ila 300 bitki türü bulunmaktadır. Margalla Tepeleri,
+                                maymunlar, egzotik kuşlar ve nadir ve şu anda nesli tükenmekte olan Margalla leoparı gibi etoburlar da dahil olmak üzere çeşitli yaban hayatı türlerine ev sahipliği yapmaktadır.</p>
+                           <br> <a href="#margalla-hills" class="btn btn-outline-primary detay-btn" data-target="margalla-hills">Detaylar</a>
                         </div>
                     </div>
                 </div>
@@ -209,10 +243,11 @@
                         <img src="images/pakistan-monument.jpg" class="card-img-top" alt="Pakistan Anıtı" height="210">
                         <div class="card-body">
                            <br> <h5 class="card-title">Pakistan Anıtı</h5>
-                            <p class="card-text">
-                                Pakistan'ın dört eyaletini ve üç bölgesini temsil eden bu anıt, şehrin simgelerindendir.
-                            </p>
-                            <a href="https://en.wikipedia.org/wiki/Pakistan_Monument" target="_blank" class="btn btn-outline-primary">Detaylar</a>
+                            <p class="card-text hidden-description">Pakistan Anıtı, Pakistan'ın İslamabad kentindeki Batı Şakarparian Tepeleri'nde bulunan ulusal bir anıt ve miras müzesidir. Anıt, 
+                                Pakistan halkının birliğini sembolize etmek için inşa edilmiştir. Daha iyi bir "yarın" için "bugünlerini" feda eden Pakistan halkına adanmıştır. Dört büyük yaprak, 
+                                Pakistan'ın dört ana kültürünü, Pencap, Beluç, Sindhi ve Peştun'u temsil eder. Üç küçük yaprak ise azınlıkları, Azad Keşmir ve Gilgit-Baltistan'ı temsil eder. 
+                                Yüksekliği, anıtı İslamabad-Rawalpindi metropol alanının her yerinden görülebilir hale getirir ve popüler bir turizm merkezidir.</p>
+                           <br> <a href="#pakistan-monument" class="btn btn-outline-primary detay-btn" data-target="pakistan-monument">Detaylar</a>
                         </div>
                     </div>
                 </div>
@@ -223,10 +258,11 @@
                         <img src="images/daman-e-koh.jpg" class="card-img-top" alt="Daman-e-Koh" height="210">
                         <div class="card-body">
                             <br><h5 class="card-title">Daman-e-Koh</h5>
-                            <p class="card-text">
-                                Şehrin panoramik manzarasını sunan bu tepede gün batımı muhteşemdir.
-                            </p>
-                            <a href="https://en.wikipedia.org/wiki/Daman-e-Koh" target="_blank" class="btn btn-outline-primary">Detaylar</a>
+                            <p class="card-text hidden-description">Daman-e-Koh, İslamabad'ın kuzeyinde bir tepe bahçesidir. Margalla Tepeleri'nin merkezindedir. Adı, "etek" anlamına gelen 
+                                "Dāman" ve "tepe" anlamına gelen "Kōh" kelimelerinin birleşimidir ve toplu olarak "dağ etekleri" anlamına gelir. Deniz seviyesinden yaklaşık 2400 ft ve 
+                                İslamabad'dan yaklaşık 500 ft yüksekliktedir. Bölge, hem bölge sakinleri hem de turistler için popüler bir yerdir. Turistik ikramlar, maymunlar için popüler 
+                                bir cazibe merkezidir. Leoparların kış aylarında Murree'nin daha yüksek tepelerinden indiği bildirilmektedir</p>
+                            <br><a href="#daman-e-koh" class="btn btn-outline-primary detay-btn" data-target="daman-e-koh">Detaylar</a>
                         </div>
                     </div>
                 </div>
@@ -318,6 +354,36 @@
             
             window.addEventListener('scroll', animateOnScroll);
             animateOnScroll(); // Run once on load
+        });
+
+        // Make Detaylar buttons always show their own detail and hide others
+        document.querySelectorAll('.detay-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Hide all descriptions first
+                document.querySelectorAll('.attraction-card .card-text').forEach(function(desc) {
+                    desc.classList.add('hidden-description');
+                });
+                // Show only the clicked button's description
+                var cardBody = btn.closest('.card-body');
+                var desc = cardBody.querySelector('.card-text');
+                desc.classList.remove('hidden-description');
+            });
+        });
+
+        // Make attraction images clickable to always show their details and hide others
+        document.querySelectorAll('.attraction-card .card-img-top').forEach(function(img) {
+            img.style.cursor = 'pointer'; // Indicate clickability
+            img.addEventListener('click', function() {
+                // Hide all descriptions first
+                document.querySelectorAll('.attraction-card .card-text').forEach(function(desc) {
+                    desc.classList.add('hidden-description');
+                });
+                // Show only the clicked image's description
+                var cardBody = img.closest('.attraction-card').querySelector('.card-body');
+                var desc = cardBody.querySelector('.card-text');
+                desc.classList.remove('hidden-description');
+            });
         });
     </script>
 </body>
