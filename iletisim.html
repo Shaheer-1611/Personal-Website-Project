@@ -359,6 +359,15 @@
                                     <i class="fas fa-eraser me-1"></i>Temizle
                                 </button>
                                 
+                                <!-- Validate Button (Vue.js) -->
+                                <button 
+                                    type="button" 
+                                    class="btn btn-validate mb-2"
+                                    @click="validateWithVue"
+                                >
+                                    <i class="fas fa-check-circle me-1"></i>Vue.js ile Doğrula
+                                </button>
+
                                 <!-- Validate Button (Plain JS) -->
                                 <button 
                                     type="button" 
@@ -668,6 +677,92 @@
                             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }
                     }
+                },
+                validateWithVue() {
+                    const errors = [];
+                    
+                    // Name validation
+                    if (!this.formData.name) {
+                        errors.push('İsim ve soyisim alanı boş bırakılamaz!');
+                    } else if (this.formData.name.length < 2) {
+                        errors.push('İsim en az 2 karakter olmalıdır!');
+                    }
+                    
+                    // Email validation
+                    if (!this.formData.email) {
+                        errors.push('E-posta alanı boş bırakılamaz!');
+                    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.formData.email)) {
+                        errors.push('Geçerli bir e-posta adresi giriniz!');
+                    }
+                    
+                    // Phone validation
+                    if (!this.formData.phone) {
+                        errors.push('Telefon numarası alanı boş bırakılamaz!');
+                    } else if (!/^[0-9]{10}$/.test(this.formData.phone.replace(/\D/g, ''))) {
+                        errors.push('Telefon numarası sadece 10 rakamdan oluşmalıdır!');
+                    }
+                    
+                    // Subject validation
+                    if (!this.formData.subject) {
+                        errors.push('Lütfen bir konu seçiniz!');
+                    }
+                    
+                    // Gender validation
+                    if (!this.formData.gender) {
+                        errors.push('Lütfen cinsiyet seçiniz!');
+                    }
+                    
+                    // Date and Time validation
+                    if (!this.formData.datetime) {
+                        errors.push('Lütfen tarih ve saat seçiniz!');
+                    }
+                    
+                    // Color validation
+                    if (!this.formData.favoriteColor) {
+                        errors.push('Lütfen bir renk seçiniz!');
+                    }
+                    
+                    // Satisfaction validation
+                    if (!this.formData.satisfaction) {
+                        errors.push('Lütfen memnuniyet seviyenizi belirtiniz!');
+                    }
+                    
+                    // Message validation
+                    if (!this.formData.message) {
+                        errors.push('Mesaj alanı boş bırakılamaz!');
+                    } else if (this.formData.message.length < 10) {
+                        errors.push('Mesaj en az 10 karakter olmalıdır!');
+                    }
+                    
+                    // Contact method validation
+                    if (!this.formData.contactMethods.email && !this.formData.contactMethods.phone) {
+                        errors.push('En az bir iletişim yöntemi seçmelisiniz!');
+                    }
+                    
+                    // Show errors in modal if any
+                    if (errors.length > 0) {
+                        const errorList = document.getElementById('validationErrors');
+                        errorList.innerHTML = errors.map(error => 
+                            `<li class="list-group-item list-group-item-danger">
+                                <i class="fas fa-times-circle me-2"></i>${error}
+                            </li>`
+                        ).join('');
+                        
+                        const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+                        validationModal.show();
+                        return false;
+                    }
+                    
+                    // If no errors, show success message
+                    const errorList = document.getElementById('validationErrors');
+                    errorList.innerHTML = `
+                        <li class="list-group-item list-group-item-success">
+                            <i class="fas fa-check-circle me-2"></i>Tüm alanlar doğru şekilde doldurulmuştur!
+                        </li>
+                    `;
+                    const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+                    validationModal.show();
+                    return true;
                 }
             }
         }).mount('#app');
