@@ -1,6 +1,6 @@
 <!-- 
     iletisim.html
-    Purpose: Provides a contact form for users to reach out to Syed Shaheer Ahmed. Includes fields for name, email, phone, subject, contact method preference, and message. Used some styles here so that
+    Purpose: Provides a contact form for users to reach out to Me(Syed Shaheer Ahmed). Includes fields for name, email, phone, subject, contact method preference, and message. Used some styles here so that
     they don't disturb the layout of other pages.
     Key Features:
     - Bootstrap 5: For responsive layout, form styling (floating labels, inputs, select, checkboxes), buttons, and general UI. Edited according to need.
@@ -52,10 +52,26 @@
         .contact-form-container .form-floating label {
             color: #000 !important;
         }
-        /* Keep checkboxes, contact method preference label, and form header white */
-        .contact-form-container .form-check-label,
+         .contact-form-container .form-check-label,
         .contact-form-container label.form-label {
             color: #fff !important;
+        }
+        /* Error message styling */
+        .error-message {
+            display: none;
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+        }
+        .error-message.show-error {
+            display: block;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
     </style>
   </head>
@@ -111,7 +127,7 @@
                         </div>
                         
                         <!-- Contact Form -->
-                        <form id="contactForm" action="form-basarli.html" method="get" @submit.prevent="handleSubmit" class="p-4">
+                        <form id="contactForm" @submit.prevent="handleSubmit" class="p-4">
                             <!-- Name Field -->
                             <div class="mb-4">
                                 <div class="form-floating">
@@ -123,6 +139,7 @@
                                         v-model="formData.name"
                                         :class="{ 'is-invalid': errors.name, 'is-valid': validated && !errors.name }"
                                         @blur="validateField('name')"
+                                        required
                                     >
                                     <label for="name">Adınız Soyadınız</label>
                                 </div>
@@ -142,6 +159,7 @@
                                         v-model="formData.email"
                                         :class="{ 'is-invalid': errors.email, 'is-valid': validated && !errors.email }"
                                         @blur="validateField('email')"
+                                        required
                                     >
                                     <label for="email">E-posta Adresiniz</label>
                                 </div>
@@ -161,6 +179,7 @@
                                         v-model="formData.phone"
                                         :class="{ 'is-invalid': errors.phone, 'is-valid': validated && !errors.phone }"
                                         @blur="validateField('phone')"
+                                        required
                                     >
                                     <label for="phone">Telefon Numaranız</label>
                                 </div>
@@ -178,6 +197,7 @@
                                         v-model="formData.subject"
                                         :class="{ 'is-invalid': errors.subject, 'is-valid': validated && !errors.subject }"
                                         @blur="validateField('subject')"
+                                        required
                                     >
                                         <option value="" disabled selected>Konu seçiniz</option>
                                         <option value="question">Sorular</option>
@@ -218,6 +238,100 @@
                                 </div>
                             </div>
                             
+                            <!-- Gender Radio Buttons -->
+                            <div class="mb-4">
+                                <label class="form-label">Cinsiyet: <span class="text-danger">*</span></label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" v-model="formData.gender" required>
+                                    <label class="form-check-label" for="male">Erkek</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female" v-model="formData.gender" required>
+                                    <label class="form-check-label" for="female">Kadın</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="other" value="other" v-model="formData.gender" required>
+                                    <label class="form-check-label" for="other">Diğer</label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.gender }">
+                                    {{ errors.gender }}
+                                </div>
+                            </div>
+
+                            <!-- Date and Time Picker -->
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input 
+                                        type="datetime-local" 
+                                        class="form-control" 
+                                        id="datetime" 
+                                        v-model="formData.datetime"
+                                        required
+                                        :class="{ 'is-invalid': errors.datetime, 'is-valid': validated && !errors.datetime }"
+                                        @blur="validateField('datetime')"
+                                    >
+                                    <label for="datetime">Tarih ve Saat <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.datetime }">
+                                    {{ errors.datetime }}
+                                </div>
+                            </div>
+
+                            <!-- Color Picker -->
+                            <div class="mb-4">
+                                <label class="form-label">Favori Renginiz: <span class="text-danger">*</span></label>
+                                <input 
+                                    type="color" 
+                                    class="form-control form-control-color" 
+                                    id="favoriteColor" 
+                                    v-model="formData.favoriteColor"
+                                    title="Renk seçiniz"
+                                    required
+                                    :class="{ 'is-invalid': errors.favoriteColor, 'is-valid': validated && !errors.favoriteColor }"
+                                    @blur="validateField('favoriteColor')"
+                                >
+                                <div class="error-message" :class="{ 'show-error': errors.favoriteColor }">
+                                    {{ errors.favoriteColor }}
+                                </div>
+                            </div>
+
+                            <!-- File Upload (Optional) -->
+                            <div class="mb-4">
+                                <label for="fileUpload" class="form-label">Dosya Yükle (İsteğe Bağlı):</label>
+                                <input 
+                                    class="form-control" 
+                                    type="file" 
+                                    id="fileUpload" 
+                                    v-model="formData.file"
+                                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                                >
+                                <div class="form-text text-white">İzin verilen dosya türleri: PDF, DOC, DOCX, JPG, JPEG, PNG</div>
+                            </div>
+
+                            <!-- Satisfaction Range Slider -->
+                            <div class="mb-4">
+                                <label for="satisfaction" class="form-label">Memnuniyet Seviyeniz: <span class="text-danger">*</span> <span class="text-white">{{ formData.satisfaction }}/10</span></label>
+                                <input 
+                                    type="range" 
+                                    class="form-range" 
+                                    min="0" 
+                                    max="10" 
+                                    step="1" 
+                                    id="satisfaction" 
+                                    v-model="formData.satisfaction"
+                                    required
+                                    :class="{ 'is-invalid': errors.satisfaction, 'is-valid': validated && !errors.satisfaction }"
+                                    @blur="validateField('satisfaction')"
+                                >
+                                <div class="d-flex justify-content-between text-white">
+                                    <small>Çok Memnun Değilim</small>
+                                    <small>Çok Memnunum</small>
+                                </div>
+                                <div class="error-message" :class="{ 'show-error': errors.satisfaction }">
+                                    {{ errors.satisfaction }}
+                                </div>
+                            </div>
+                            
                             <!-- Textarea (Message) -->
                             <div class="mb-4">
                                 <div class="form-floating">
@@ -229,6 +343,7 @@
                                         v-model="formData.message"
                                         :class="{ 'is-invalid': errors.message, 'is-valid': validated && !errors.message }"
                                         @blur="validateField('message')"
+                                        required
                                     ></textarea>
                                     <label for="message">Mesajınız</label>
                                 </div>
@@ -248,7 +363,7 @@
                                 <button 
                                     type="button" 
                                     class="btn btn-validate mb-2"
-                                    @click="validateWithJS"
+                                    onclick="validateWithJS()"
                                 >
                                     <i class="fas fa-check-circle me-1"></i>JavaScript ile Doğrula
                                 </button>
@@ -274,6 +389,28 @@
             </div>
         </main>
 
+        <!-- Validation Modal -->
+        <div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="validationModalLabel">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Doğrulama Hataları
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group" id="validationErrors">
+                            <!-- Error messages will be inserted here -->
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="text-center py-4" style="background-color: rgba(0,0,0,0.8); color: white;">
             <div class="container">
@@ -296,50 +433,102 @@
         // Plain JavaScript Validation
         function validateWithJS() {
             const form = document.getElementById('contactForm');
-            let isValid = true;
+            const errors = [];
             
             // Name validation
             const name = form.elements['name'].value.trim();
             if (!name) {
-                alert('Lütfen adınızı giriniz!');
-                isValid = false;
+                errors.push('İsim ve soyisim alanı boş bırakılamaz!');
+            } else if (name.length < 2) {
+                errors.push('İsim en az 2 karakter olmalıdır!');
             }
             
             // Email validation
             const email = form.elements['email'].value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Lütfen geçerli bir e-posta adresi giriniz!');
-                isValid = false;
+            if (!email) {
+                errors.push('E-posta alanı boş bırakılamaz!');
+            } else if (!emailRegex.test(email)) {
+                errors.push('Geçerli bir e-posta adresi giriniz!');
             }
             
             // Phone validation
             const phone = form.elements['phone'].value.trim();
-            const phoneRegex = /^[0-9]{10,15}$/;
-            if (!phoneRegex.test(phone)) {
-                alert('Lütfen geçerli bir telefon numarası giriniz (10-15 rakam)!');
-                isValid = false;
+            if (!phone) {
+                errors.push('Telefon numarası alanı boş bırakılamaz!');
+            } else if (!/^[0-9]{10}$/.test(phone.replace(/\D/g, ''))) {
+                errors.push('Telefon numarası sadece 10 rakamdan oluşmalıdır!');
             }
             
             // Subject validation
             const subject = form.elements['subject'].value;
             if (!subject) {
-                alert('Lütfen bir konu seçiniz!');
-                isValid = false;
+                errors.push('Lütfen bir konu seçiniz!');
+            }
+            
+            // Gender validation
+            const gender = form.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                errors.push('Lütfen cinsiyet seçiniz!');
+            }
+            
+            // Date and Time validation
+            const datetime = form.elements['datetime'].value;
+            if (!datetime) {
+                errors.push('Lütfen tarih ve saat seçiniz!');
+            }
+            
+            // Color validation
+            const color = form.elements['favoriteColor'].value;
+            if (!color) {
+                errors.push('Lütfen bir renk seçiniz!');
+            }
+            
+            // Satisfaction validation
+            const satisfaction = form.elements['satisfaction'].value;
+            if (!satisfaction) {
+                errors.push('Lütfen memnuniyet seviyenizi belirtiniz!');
             }
             
             // Message validation
             const message = form.elements['message'].value.trim();
-            if (message.length < 10) {
-                alert('Mesajınız en az 10 karakter olmalıdır!');
-                isValid = false;
+            if (!message) {
+                errors.push('Mesaj alanı boş bırakılamaz!');
+            } else if (message.length < 10) {
+                errors.push('Mesaj en az 10 karakter olmalıdır!');
             }
             
-            if (isValid) {
-                alert('JavaScript doğrulaması başarılı! Form gönderilebilir.');
+            // Contact method validation
+            const contactEmail = form.elements['contactEmail'].checked;
+            const contactPhone = form.elements['contactPhone'].checked;
+            if (!contactEmail && !contactPhone) {
+                errors.push('En az bir iletişim yöntemi seçmelisiniz!');
             }
             
-            return isValid;
+            // Show errors in modal if any
+            if (errors.length > 0) {
+                const errorList = document.getElementById('validationErrors');
+                errorList.innerHTML = errors.map(error => 
+                    `<li class="list-group-item list-group-item-danger">
+                        <i class="fas fa-times-circle me-2"></i>${error}
+                    </li>`
+                ).join('');
+                
+                const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+                validationModal.show();
+                return false;
+            }
+            
+            // If no errors, show success message
+            const errorList = document.getElementById('validationErrors');
+            errorList.innerHTML = `
+                <li class="list-group-item list-group-item-success">
+                    <i class="fas fa-check-circle me-2"></i>Tüm alanlar doğru şekilde doldurulmuştur!
+                </li>
+            `;
+            const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+            validationModal.show();
+            return true;
         }
         
         // Vue.js Application
@@ -357,7 +546,12 @@
                             email: false,
                             phone: false
                         },
-                        message: ''
+                        message: '',
+                        gender: '',
+                        datetime: '',
+                        favoriteColor: '',
+                        file: '',
+                        satisfaction: 5
                     },
                     errors: {
                         name: '',
@@ -365,84 +559,108 @@
                         phone: '',
                         subject: '',
                         contactMethods: '',
-                        message: ''
+                        message: '',
+                        gender: '',
+                        datetime: '',
+                        favoriteColor: '',
+                        satisfaction: ''
                     },
                     validated: false,
                     isSubmitting: false
                 };
             },
             methods: {
-                validateField(field) {
+                validateAllFields() {
                     this.validated = true;
-                    
-                    switch(field) {
-                        case 'name':
-                            this.errors.name = this.formData.name.trim() ? '' : 'Bu alan zorunludur';
-                            break;
-                        case 'email':
-                            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                            this.errors.email = emailRegex.test(this.formData.email) ? '' : 'Geçersiz e-posta formatı';
-                            break;
-                        case 'phone':
-                            const phoneRegex = /^[0-9]{10,15}$/;
-                            this.errors.phone = phoneRegex.test(this.formData.phone) ? '' : '10-15 rakam giriniz';
-                            break;
-                        case 'subject':
-                            this.errors.subject = this.formData.subject ? '' : 'Lütfen bir konu seçiniz';
-                            break;
-                        case 'message':
-                            this.errors.message = this.formData.message.trim().length >= 10 ? '' : 'En az 10 karakter giriniz';
-                            break;
-                    }
-                },
-                validateForm() {
-                    this.validated = true;
-                    let isValid = true;
-                    
-                    // Validate all fields
-                    this.validateField('name');
-                    this.validateField('email');
-                    this.validateField('phone');
-                    this.validateField('subject');
-                    this.validateField('message');
-                    
-                    // Check contact methods
+                    let hasErrors = false;
+
+                    // Validate each field
+                    const fields = ['name', 'email', 'phone', 'subject', 'gender', 'datetime', 'favoriteColor', 'satisfaction', 'message'];
+                    fields.forEach(field => {
+                        this.validateField(field);
+                        if (this.errors[field]) {
+                            hasErrors = true;
+                        }
+                    });
+
+                    // Validate contact methods
                     if (!this.formData.contactMethods.email && !this.formData.contactMethods.phone) {
                         this.errors.contactMethods = 'En az bir iletişim yöntemi seçiniz';
-                        isValid = false;
+                        hasErrors = true;
                     } else {
                         this.errors.contactMethods = '';
                     }
-                    
-                    // Check if any errors exist
-                    for (const error in this.errors) {
-                        if (this.errors[error]) {
-                            isValid = false;
-                        }
-                    }
-                    
-                    return isValid;
+
+                    return !hasErrors;
                 },
+                validateField(field) {
+                    this.errors[field] = '';
+                    
+                    switch(field) {
+                        case 'name':
+                            if (!this.formData.name) {
+                                this.errors.name = 'İsim alanı zorunludur';
+                            } else if (this.formData.name.length < 2) {
+                                this.errors.name = 'İsim en az 2 karakter olmalıdır';
+                            }
+                            break;
+                        case 'email':
+                            if (!this.formData.email) {
+                                this.errors.email = 'E-posta alanı zorunludur';
+                            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.formData.email)) {
+                                this.errors.email = 'Geçerli bir e-posta adresi giriniz';
+                            }
+                            break;
+                        case 'phone':
+                            if (!this.formData.phone) {
+                                this.errors.phone = 'Telefon alanı zorunludur';
+                            } else if (!/^[0-9]{10}$/.test(this.formData.phone.replace(/\D/g, ''))) {
+                                this.errors.phone = 'Geçerli bir telefon numarası giriniz (10 haneli)';
+                            }
+                            break;
+                        case 'subject':
+                            if (!this.formData.subject) {
+                                this.errors.subject = 'Lütfen bir konu seçiniz';
+                            }
+                            break;
+                        case 'message':
+                            if (!this.formData.message) {
+                                this.errors.message = 'Mesaj alanı zorunludur';
+                            } else if (this.formData.message.length < 10) {
+                                this.errors.message = 'Mesaj en az 10 karakter olmalıdır';
+                            }
+                            break;
+                        case 'gender':
+                            if (!this.formData.gender) {
+                                this.errors.gender = 'Lütfen cinsiyet seçiniz';
+                            }
+                            break;
+                        case 'datetime':
+                            if (!this.formData.datetime) {
+                                this.errors.datetime = 'Lütfen tarih ve saat seçiniz';
+                            }
+                            break;
+                        case 'favoriteColor':
+                            if (!this.formData.favoriteColor) {
+                                this.errors.favoriteColor = 'Lütfen bir renk seçiniz';
+                            }
+                            break;
+                        case 'satisfaction':
+                            if (!this.formData.satisfaction) {
+                                this.errors.satisfaction = 'Lütfen memnuniyet seviyesi seçiniz';
+                            }
+                            break;
+                    }
+                 },
                 handleSubmit() {
-                    if (this.validateForm()) {
+                    if (this.validateAllFields()) {
                         this.isSubmitting = true;
                         
-                        // Simulate API call
-                        setTimeout(() => {
-                            // In a real app, you would submit to a server here
-                            console.log('Form submitted:', this.formData);
-                            
-                            // Store form data for the success page
-                            localStorage.setItem('formData', JSON.stringify(this.formData));
-
-                            //retrieves data
-                            const formData = JSON.parse(localStorage.getItem('formData'))
-                            
-                            // Redirect to success page
-                            window.location.href = 'form-basarli.html';
-                            
-                            this.isSubmitting = false;
-                        }, 1500);
+                        // Store form data for the success page
+                        localStorage.setItem('formData', JSON.stringify(this.formData));
+                        
+                        // Redirect to success page
+                        window.location.href = 'form-basarli.html';
                     } else {
                         // Scroll to first error
                         const firstError = document.querySelector('.is-invalid');
