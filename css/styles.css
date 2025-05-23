@@ -1,4 +1,6 @@
-
+ /*-----THIS PAGE CONTAINS STYLES OF ALL THE PAGES IN THE WEBSITE. EVERY SPECIFIC STYLE ON A PAGE HAS BEEN INCLUDED UNDER A 
+        HEADING WITH THE STYLES USED IN THE PAGES. SOME OF THE STYLES ARE USED IN THE TEXT FILES NOT TO DISTURB THE LAYOUT.-------------*/
+ 
  /*----------------------INDEX.HTML----------------------*/      
 
  /* Custom Gradient Background */
@@ -123,7 +125,15 @@ body {
 
 .card-hover:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Add specific style for project cards to remove shadow */
+.project-highlight {
+    box-shadow: none !important;
+}
+
+.project-highlight:hover {
+    box-shadow: none !important;
 }
 
 .section-title {

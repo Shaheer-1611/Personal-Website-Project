@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Validate credentials against hardcoded values
     // In a production environment, this should be replaced with database authentication
-    if ($email === "syed.ahmed@ogr.sakarya.edu.tr" && $password === "b241210579") {
+    if ($email === "b987654321@sakarya.edu.tr" && $password === "b987654321") {
         // Set session variables for logged-in user
         $_SESSION['loggedin'] = true;
         $_SESSION['email'] = $email;

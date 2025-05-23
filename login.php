@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     
     // Check credentials
-    if ($email === "syed.ahmed@ogr.sakarya.edu.tr" && $password === "b241210579") {
+    if ($email === "b987654321@sakarya.edu.tr" && $password === "b987654321") {
         // Set session variables
         $_SESSION['loggedin'] = true;
         $_SESSION['email'] = $email;

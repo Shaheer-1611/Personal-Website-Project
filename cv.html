@@ -1,6 +1,6 @@
 <!-- 
     cv.html
-    Purpose: Displays (My(Syed Shaheer Ahmed's) resume (Özgeçmiş), including education, skills, experience, and projects. Used some styles here so that
+    Purpose: Displays My(Syed Shaheer Ahmed's) resume (Özgeçmiş), including education, skills, experience, and projects. Used some styles here so that
     they don't disturb the layout of other pages.
     Key Features:
     - Bootstrap 5: For responsive layout, cards, navigation, modals, and timeline structure. Edited according to need.
@@ -296,7 +296,7 @@
             <br><div class="row">
                 <!-- Akıllı Sınav Sistemi Project Card (highlighted and clickable) -->
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="akilli-sinav-card" style="cursor:pointer; border: 2px solid #0d6efd; box-shadow: 0 0 16px #0d6efd55; animation: pulse 1.5s infinite alternate;">
+                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="akilli-sinav-card" style="cursor:pointer; border: 2px solid #0d6efd; animation: pulse 1.5s infinite alternate; box-shadow: none;">
                         <div class="card-body">
                             <h5 class="card-title">Akıllı Sınav Sistemi <span style="color:#0d6efd; font-weight:bold;">(Tıklayın)</span></h5>
                             <p class="card-text">Python ve makine öğrenmesi kullanarak öğrenci performans analiz sistemi.</p>
@@ -307,7 +307,7 @@
                 </div>
                 <!-- Kişisel Web Sitesi Project Card (highlighted and clickable) -->
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="web-card" style="cursor:pointer; border: 2px solid #198754; box-shadow: 0 0 16px #19875455; animation: pulse-green 1.5s infinite alternate;">
+                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="web-card" style="cursor:pointer; border: 2px solid #198754; animation: pulse-green 1.5s infinite alternate; box-shadow: none;">
                         <div class="card-body">
                             <h5 class="card-title">Kişisel Web Sitesi <span style="color:#198754; font-weight:bold;">(Tıklayın)</span></h5>
                             <p class="card-text">HTML, CSS ve Bootstrap kullanarak responsive kişisel web sitesi.</p>
@@ -318,7 +318,7 @@
                 </div>
                 <!-- Robot Tasarımı Project Card (highlighted and clickable) -->
                 <div class="col-md-4 mb-4">
-                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="robot-card" style="cursor:pointer; border: 2px solid #fd7e14; box-shadow: 0 0 16px #fd7e1455; animation: pulse-orange 1.5s infinite alternate;">
+                    <div class="card card-hover h-100 project-highlight project-modal-trigger" id="robot-card" style="cursor:pointer; border: 2px solid #fd7e14; animation: pulse-orange 1.5s infinite alternate; box-shadow: none;">
                         <div class="card-body">
                             <h5 class="card-title">Robot Tasarımı <span style="color:#fd7e14; font-weight:bold;">(Tıklayın)</span></h5>
                             <p class="card-text">Robotikte çalışmak için AI ve Python'dan farklı sensörler kullanıldım</p>
@@ -330,7 +330,7 @@
                 </div>
             </div>
             <!-- Akıllı Sınav Sistemi Info Modal -->
-            <div id="akilli-sinav-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; box-shadow:0 4px 32px rgba(0,0,0,0.2); border-radius:16px; padding:24px;">
+            <div id="akilli-sinav-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; border-radius:16px; padding:24px;">
                 <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-akilli-sinav-modal"></button>
                 <h5 class="mb-3" style="color:#0d6efd;"><i class="fas fa-project-diagram me-2"></i>Akıllı Sınav Sistemi</h5>
                 <p><strong>Proje Açıklaması:</strong> Bu sistem, Python ve makine öğrenmesi algoritmaları kullanılarak geliştirilmiş bir öğrenci performans analiz platformudur. Öğrencilerin sınav sonuçlarını analiz ederek zayıf ve güçlü yönlerini belirler, kişiselleştirilmiş öneriler sunar ve öğretmenlere detaylı raporlar sağlar. Sistem, eğitimde verimliliği artırmayı ve öğrencilerin başarılarını maksimize etmeyi hedefler.</p>
@@ -342,7 +342,7 @@
                 </ul>
             </div>
             <!-- Kişisel Web Sitesi Info Modal -->
-            <div id="web-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; box-shadow:0 4px 32px rgba(0,0,0,0.2); border-radius:16px; padding:24px;">
+            <div id="web-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; border-radius:16px; padding:24px;">
                 <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-web-modal"></button>
                 <h5 class="mb-3" style="color:#198754;"><i class="fas fa-globe me-2"></i>Kişisel Web Sitesi</h5>
                 <p><strong>Proje Açıklaması:</strong> Kişisel web sitem, HTML5, CSS3 ve Bootstrap kullanılarak tamamen responsive olarak tasarlanmıştır. Modern ve kullanıcı dostu bir arayüze sahip olup, portföyümü, özgeçmişimi ve iletişim bilgilerimi sergilemektedir. SEO uyumlu ve hızlı yüklenen bir yapıya sahiptir.</p>
@@ -354,7 +354,7 @@
                 </ul>
             </div>
             <!-- Robot Tasarımı Info Modal -->
-            <div id="robot-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; box-shadow:0 4px 32px rgba(0,0,0,0.2); border-radius:16px; padding:24px;">
+            <div id="robot-modal" class="project-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1050; min-width:320px; max-width:90vw; background:#fff; border-radius:16px; padding:24px;">
                 <button type="button" class="btn-close float-end" aria-label="Kapat" id="close-robot-modal"></button>
                 <h5 class="mb-3" style="color:#fd7e14;"><i class="fas fa-robot me-2"></i>Robot Tasarımı</h5>
                 <p><strong>Proje Açıklaması:</strong> Bu projede, yapay zeka ve Python programlama dili kullanılarak çeşitli sensörlerle donatılmış bir robot tasarlandı. Robot, çevresini algılayıp uygun tepkiler verebiliyor ve farklı görevleri otonom olarak yerine getirebiliyor. Proje, robotikte pratik uygulama ve algoritma geliştirme becerilerimi geliştirdi.</p>
@@ -369,16 +369,16 @@
             <style>
                 /* Pulse animation for highlight */
                 @keyframes pulse {
-                    0% { box-shadow: 0 0 16px #0d6efd55; }
-                    100% { box-shadow: 0 0 32px #0d6efd; }
+                    0% { transform: scale(1); }
+                    100% { transform: scale(1.05); }
                 }
                 @keyframes pulse-green {
-                    0% { box-shadow: 0 0 16px #19875455; }
-                    100% { box-shadow: 0 0 32px #198754; }
+                    0% { transform: scale(1); }
+                    100% { transform: scale(1.05); }
                 }
                 @keyframes pulse-orange {
-                    0% { box-shadow: 0 0 16px #fd7e1455; }
-                    100% { box-shadow: 0 0 32px #fd7e14; }
+                    0% { transform: scale(1); }
+                    100% { transform: scale(1.05); }
                 }
             </style>
         </section>
