@@ -32,7 +32,7 @@ My detailed resume page that includes:
 - Downloadable PDF version of my resume
 
 ### My City (sehir.html)
-A dedicated page about Sakarya, my current city, featuring:
+A dedicated page about Islamabad, my hometown, featuring:
 - Historical information
 - Cultural highlights
 - Tourist attractions
@@ -40,11 +40,11 @@ A dedicated page about Sakarya, my current city, featuring:
 - Photo gallery of important landmarks
 
 ### Our Heritage (mirasimiz.html)
-A showcase of Turkish cultural heritage, including:
+A showcase of Pakistan's cultural heritage, including:
 - Historical monuments
 - Cultural traditions
 - UNESCO World Heritage sites
-- Interactive elements to explore Turkish culture
+- Interactive elements to explore Pakistani culture
 
 ### My Interests (iligi-alanlarim.html)
 A personal page where I share:
